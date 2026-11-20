@@ -2,7 +2,12 @@
 <html lang="hi" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+
   <title>Touqeer Raza (तौक़ीर रज़ा) | State Spokesperson, BJP Chhattisgarh | Official Website</title>
   <meta name="description" content="Official website of Touqeer Raza (Tauqeer Raza / तौक़ीर रज़ा), State Spokesperson of Bharatiya Janata Party (BJP) Chhattisgarh, President of FANS Raipur, entrepreneur, and social reformer based in Raipur, Chhattisgarh." />
   <meta name="keywords" content="Touqeer Raza, Tauqeer Raza, तौक़ीर रज़ा, तौकीर रजा, Touqeer Raza BJP, Touqeer Raza Raipur, BJP Spokesperson Chhattisgarh, FANS Raipur, Maath Sangay Dakat, Panjatani Welfare Society Chhattisgarh" />
@@ -10,7 +15,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://touqeerraza.in/" />
 
-  <!-- Custom Favicon (Works Locally, on Web & in Google Search Snippets) -->
+  <!-- Custom Favicon (Android, iOS, Windows, macOS & Google Search Snippets) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Crect x='0' y='0' width='64' height='6' fill='%23ea580c'/%3E%3Crect x='0' y='58' width='64' height='6' fill='%23059669'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-weight='bold' font-size='28' fill='%23ffffff' text-anchor='middle'%3ETR%3C/text%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" href="touqeer-raza.jpg" />
 
@@ -35,7 +40,7 @@
   <!-- Google Fonts (English + Devanagari Hindi) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -44,8 +49,8 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'Noto Sans Devanagari', 'sans-serif'],
-            serif: ['Merriweather', 'Noto Sans Devanagari', 'serif'],
+            sans: ['Inter', 'Noto Sans Devanagari', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            serif: ['Merriweather', 'Noto Sans Devanagari', 'Georgia', 'serif'],
             hindi: ['Noto Sans Devanagari', 'Inter', 'sans-serif'],
           },
           colors: {
@@ -53,6 +58,7 @@
               50: '#fff7ed',
               100: '#ffedd5',
               200: '#fed7aa',
+              400: '#fb923c',
               500: '#f97316',
               600: '#ea580c',
               700: '#c2410c',
@@ -67,6 +73,171 @@
       }
     }
   </script>
+
+  <!-- Cross-Platform Fluidity, GPU Animations & iOS/Android Polish -->
+  <style>
+    :root {
+      color-scheme: light;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-padding-top: 5rem;
+    }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: none;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    a, button, label, select, input, textarea {
+      touch-action: manipulation;
+    }
+
+    /* Scroll Progress Bar */
+    #scrollProgressBar {
+      transform-origin: left center;
+      transform: scaleX(0);
+      will-change: transform;
+    }
+
+    /* Fluid Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+
+    /* Ambient Hero Glow Animation */
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 0.24; transform: scale(1); }
+      50% { opacity: 0.34; transform: scale(1.06); }
+    }
+
+    .hero-glow {
+      animation: subtlePulse 9s ease-in-out infinite;
+    }
+
+    /* Executive Card Lift (Desktop Pointer Only — Prevents Sticky Hover on iOS/Android) */
+    @media (hover: hover) and (pointer: fine) {
+      .card-lift {
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                    border-color 0.25s ease;
+      }
+      .card-lift:hover {
+        transform: translate3d(0, -4px, 0);
+        box-shadow: 0 18px 34px -14px rgba(15, 23, 42, 0.16);
+      }
+    }
+
+    /* Smooth Tab Crossfade */
+    @keyframes panelFadeIn {
+      from { opacity: 0; transform: translate3d(0, 8px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    .panel-animate {
+      animation: panelFadeIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Active Navigation Underline */
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background: #ea580c;
+      border-radius: 9999px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+    .nav-link.active {
+      color: #ea580c;
+      font-weight: 600;
+    }
+
+    /* Mobile Drawer Fluid Transition */
+    #mobileNavDrawer {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+    }
+    #mobileNavDrawer.open {
+      max-height: 460px;
+      opacity: 1;
+    }
+
+    /* Lightbox Smooth Fade */
+    #photoLightbox {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease;
+    }
+    #photoLightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #photoLightbox .lightbox-panel {
+      transform: scale(0.96);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #photoLightbox.open .lightbox-panel {
+      transform: scale(1);
+    }
+
+    /* Toast Notification */
+    #toastNotice {
+      transform: translate3d(-50%, 16px, 0);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+    }
+    #toastNotice.show {
+      transform: translate3d(-50%, 0, 0);
+      opacity: 1;
+    }
+
+    /* Respect System Reduced-Motion Setting Across iOS/Android/Windows/macOS */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
 
   <!-- Google Knowledge Graph / Entity SEO: ProfilePage + Person JSON-LD -->
   <script type="application/ld+json">
@@ -87,6 +258,10 @@
       ],
       "givenName": "Touqeer",
       "familyName": "Raza",
+      "parent": {
+        "@type": "Person",
+        "name": "Syed Taufique Raza"
+      },
       "disambiguatingDescription": "Indian politician, State Spokesperson of the Bharatiya Janata Party (BJP) in Chhattisgarh, President of Forum for Awareness of National Security (FANS) Raipur, entrepreneur, and social worker based in Raipur, Chhattisgarh.",
       "description": "Touqeer Raza is an Indian political leader serving as State Spokesperson for the Bharatiya Janata Party (BJP) Chhattisgarh, President of Forum for Awareness of National Security (FANS) Raipur, and State President of Panjatani Welfare Society Chhattisgarh.",
       "image": {
@@ -171,55 +346,88 @@
   <!-- Top Tricolor Accent Strip -->
   <div class="h-1.5 w-full bg-gradient-to-r from-saffron-600 via-white to-emerald-600"></div>
 
-  <!-- Sticky Navigation (Arranged in Protocol Order) -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200/80">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-lg bg-navy-900 text-white font-serif font-bold flex items-center justify-center border-b-2 border-saffron-500 group-hover:bg-saffron-600 transition">
+  <!-- Sticky Navigation (Desktop + Fluid Mobile Drawer for iOS/Android) -->
+  <header class="sticky top-0 z-50 bg-white/92 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-3 group shrink-0">
+        <div class="w-10 h-10 rounded-lg bg-navy-900 text-white font-serif font-bold flex items-center justify-center border-b-2 border-saffron-500 group-hover:bg-saffron-600 transition duration-200 shadow-sm">
           TR
         </div>
         <div>
           <span class="block font-serif font-bold text-navy-900 text-base sm:text-lg leading-tight">Touqeer Raza</span>
-          <span class="block text-[11px] font-medium text-saffron-700 tracking-wide uppercase">State Spokesperson • BJP CG</span>
+          <span class="block text-[11px] font-semibold text-saffron-700 tracking-wide uppercase">State Spokesperson • BJP CG</span>
         </div>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600">
-        <a href="#biography" class="hover:text-saffron-600 transition">Biography</a>
-        <a href="#positions" class="hover:text-saffron-600 transition">Positions</a>
-        <a href="#campaigns" class="hover:text-saffron-600 transition">Rallies &amp; Work</a>
-        <a href="#gallery" class="hover:text-saffron-600 transition">Leadership Gallery</a>
-        <a href="#debates" class="hover:text-saffron-600 transition">TV Debates</a>
-        <a href="#social-feed" class="hover:text-saffron-600 transition">Social Feed</a>
+      <!-- Desktop Navigation -->
+      <nav aria-label="Primary navigation" class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#biography" class="nav-link hover:text-saffron-600 transition">Biography</a>
+        <a href="#positions" class="nav-link hover:text-saffron-600 transition">Positions</a>
+        <a href="#campaigns" class="nav-link hover:text-saffron-600 transition">Rallies &amp; Work</a>
+        <a href="#gallery" class="nav-link hover:text-saffron-600 transition">Leadership Gallery</a>
+        <a href="#debates" class="nav-link hover:text-saffron-600 transition">TV Debates</a>
+        <a href="#social-feed" class="nav-link hover:text-saffron-600 transition">Social Feed</a>
       </nav>
 
-      <div class="flex items-center gap-2.5">
+      <!-- Right Actions + Mobile Menu Button -->
+      <div class="flex items-center gap-2">
         <a href="#contact"
-           class="inline-flex items-center gap-2 bg-saffron-600 hover:bg-saffron-700 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition">
+           class="inline-flex items-center gap-1.5 bg-saffron-600 hover:bg-saffron-700 active:scale-95 text-white text-xs sm:text-sm font-semibold px-3.5 sm:px-4 py-2 rounded-lg shadow-sm transition">
           <span>Public Office</span>
         </a>
+        <button id="mobileMenuBtn" type="button" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false"
+                class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-navy-900 hover:bg-slate-100 active:scale-95 transition">
+          <svg id="menuIconOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menuIconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNavDrawer" class="lg:hidden bg-white/98 border-t border-slate-100">
+      <nav aria-label="Mobile navigation" class="max-w-6xl mx-auto px-4 py-3 grid grid-cols-2 gap-2 text-sm font-medium text-slate-700">
+        <a href="#biography" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-stone-50 hover:bg-saffron-50 hover:text-saffron-700 transition">Biography</a>
+        <a href="#positions" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-stone-50 hover:bg-saffron-50 hover:text-saffron-700 transition">Positions</a>
+        <a href="#campaigns" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-stone-50 hover:bg-saffron-50 hover:text-saffron-700 transition">Rallies &amp; Work</a>
+        <a href="#gallery" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-stone-50 hover:bg-saffron-50 hover:text-saffron-700 transition">Leadership Gallery</a>
+        <a href="#debates" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-stone-50 hover:bg-saffron-50 hover:text-saffron-700 transition">TV Debates</a>
+        <a href="#social-feed" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-stone-50 hover:bg-saffron-50 hover:text-saffron-700 transition">Social Feed</a>
+      </nav>
+    </div>
+
+    <!-- GPU Scroll Progress Indicator -->
+    <div class="h-[2.5px] w-full bg-slate-100 overflow-hidden">
+      <div id="scrollProgressBar" class="h-full w-full bg-gradient-to-r from-saffron-500 via-saffron-600 to-emerald-600"></div>
     </div>
   </header>
 
   <!-- 1. Hero Section -->
-  <section class="relative bg-navy-900 text-white overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(234,88,12,0.24),_transparent_55%)]"></div>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 relative z-10">
+  <section id="top" class="relative bg-navy-900 text-white overflow-hidden">
+    <div class="hero-glow pointer-events-none absolute -top-24 -right-24 w-[420px] h-[420px] sm:w-[560px] sm:h-[560px] rounded-full bg-saffron-600/25 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 -left-24 w-[320px] h-[320px] rounded-full bg-emerald-600/10 blur-3xl"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
       <div class="grid lg:grid-cols-12 gap-10 items-center">
 
         <!-- Hero Content -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex flex-wrap items-center gap-2 bg-white/10 border border-white/15 rounded-full px-3.5 py-1.5 text-xs font-medium text-saffron-100">
-            <span class="w-2 h-2 rounded-full bg-saffron-500"></span>
+        <div class="lg:col-span-7 space-y-6 reveal">
+          <div class="inline-flex flex-wrap items-center gap-2 bg-white/10 border border-white/15 rounded-full px-3.5 py-1.5 text-xs font-medium text-saffron-100 backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-saffron-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-saffron-500"></span>
+            </span>
             <span>Bharatiya Janata Party (BJP) Chhattisgarh • Raipur</span>
           </div>
 
           <div>
-            <h1 class="font-serif text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight text-white leading-[1.12]">
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-[56px] font-black tracking-tight text-white leading-[1.1]">
               Touqeer Raza
             </h1>
-            <p class="mt-2 text-base sm:text-lg font-hindi font-semibold text-saffron-400">
+            <p class="mt-2.5 text-base sm:text-lg font-hindi font-semibold text-saffron-400">
               तौक़ीर रज़ा &nbsp;•&nbsp; <span class="text-sm font-sans font-normal text-slate-300">Also spelled Tauqeer Raza</span>
             </p>
           </div>
@@ -235,16 +443,17 @@
           <!-- Primary Action Buttons -->
           <div class="flex flex-wrap items-center gap-3.5 pt-1">
             <a href="#gallery"
-               class="inline-flex items-center gap-2 bg-saffron-600 hover:bg-saffron-500 text-white font-semibold px-5 py-3 rounded-xl shadow-lg shadow-saffron-600/20 transition">
+               class="inline-flex items-center gap-2 bg-saffron-600 hover:bg-saffron-500 active:scale-95 text-white font-semibold px-5 py-3 rounded-xl shadow-lg shadow-saffron-600/25 transition">
               <span>Leadership Gallery</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
             <a href="#debates"
-               class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 text-white font-medium px-5 py-3 rounded-xl transition">
+               class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 active:scale-95 border border-white/15 text-white font-medium px-5 py-3 rounded-xl backdrop-blur-sm transition">
               <span>Watch TV Debates</span>
             </a>
           </div>
 
-          <!-- Official Social Handles -->
+          <!-- Official Social Handles (Verified X, Instagram, Facebook Only) -->
           <div class="pt-3 flex flex-wrap items-center gap-5 text-sm text-slate-300">
             <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Official Profiles:</span>
             <a href="https://x.com/touqeerrazabjp" target="_blank" rel="noopener me" class="inline-flex items-center gap-1.5 hover:text-saffron-400 transition">
@@ -263,13 +472,15 @@
         </div>
 
         <!-- Portrait Card -->
-        <div class="lg:col-span-5">
-          <div class="max-w-sm mx-auto bg-white/5 border border-white/15 rounded-2xl p-4 backdrop-blur-sm shadow-2xl">
-            <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-slate-800 flex items-center justify-center">
+        <div class="lg:col-span-5 reveal reveal-delay-1">
+          <div class="max-w-sm mx-auto bg-white/5 border border-white/15 rounded-2xl p-4 backdrop-blur-md shadow-2xl">
+            <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-slate-800 flex items-center justify-center ring-1 ring-white/10">
               <img
                 id="portraitImg"
                 src="touqeer-raza.jpg"
                 alt="Touqeer Raza — State Spokesperson, BJP Chhattisgarh"
+                fetchpriority="high"
+                decoding="async"
                 class="w-full h-full object-cover object-top"
                 onerror="this.classList.add('hidden'); document.getElementById('portraitFallback').classList.remove('hidden');"
               />
@@ -278,7 +489,7 @@
                   TR
                 </div>
                 <p class="mt-4 font-serif text-lg font-bold text-white">Touqeer Raza</p>
-                <p class="text-xs text-slate-400 mt-1">Place <code>touqeer-raza.jpg</code> in this folder</p>
+                <p class="text-xs text-slate-400 mt-1">State Spokesperson • BJP Chhattisgarh</p>
               </div>
             </div>
             <div class="mt-3.5 flex items-center justify-between text-xs text-slate-300 px-1">
@@ -296,19 +507,19 @@
   <section class="bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-3">
-          <div class="font-serif text-2xl sm:text-3xl font-black text-navy-900">1994</div>
+        <div class="p-3 reveal">
+          <div class="font-serif text-2xl sm:text-3xl font-black text-navy-900" data-count-target="1994" data-count-suffix="">1994</div>
           <div class="text-xs sm:text-sm text-slate-600 mt-1">Joined BJP as Primary Member</div>
         </div>
-        <div class="p-3">
-          <div class="font-serif text-2xl sm:text-3xl font-black text-saffron-600">1,160+ km</div>
+        <div class="p-3 reveal reveal-delay-1">
+          <div class="font-serif text-2xl sm:text-3xl font-black text-saffron-600" data-count-target="1160" data-count-suffix="+ km" data-count-comma="true">1,160+ km</div>
           <div class="text-xs sm:text-sm text-slate-600 mt-1">Bastar &amp; Khairagarh Peace Rallies</div>
         </div>
-        <div class="p-3">
+        <div class="p-3 reveal reveal-delay-2">
           <div class="font-serif text-2xl sm:text-3xl font-black text-navy-900">Mr. MP</div>
           <div class="text-xs sm:text-sm text-slate-600 mt-1">Undivided MP Bodybuilding &amp; Hockey</div>
         </div>
-        <div class="p-3">
+        <div class="p-3 reveal reveal-delay-3">
           <div class="font-serif text-2xl sm:text-3xl font-black text-saffron-600">Khairagarh</div>
           <div class="text-xs sm:text-sm text-slate-600 mt-1">Classical Vocal Music Graduate</div>
         </div>
@@ -322,7 +533,7 @@
       <div class="grid lg:grid-cols-12 gap-10 items-start">
 
         <!-- Main Narrative Column -->
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-7 space-y-6 reveal">
           <div class="flex flex-wrap items-center justify-between gap-3">
             <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-700 bg-saffron-50 px-3 py-1 rounded-md">
               जीवन परिचय • Biography
@@ -330,11 +541,11 @@
 
             <!-- Language Switcher -->
             <div class="inline-flex rounded-xl bg-slate-200/80 p-1">
-              <button onclick="switchBioLang('hi')" id="btn-bio-hi"
+              <button type="button" onclick="switchBioLang('hi')" id="btn-bio-hi"
                       class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-navy-900 text-white shadow-sm transition">
                 हिन्दी में पढ़ें
               </button>
-              <button onclick="switchBioLang('en')" id="btn-bio-en"
+              <button type="button" onclick="switchBioLang('en')" id="btn-bio-en"
                       class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-700 hover:text-navy-900 transition">
                 Read in English
               </button>
@@ -342,7 +553,7 @@
           </div>
 
           <!-- Refined Hindi Biography -->
-          <article id="bio-hindi" class="space-y-5 font-hindi text-slate-700 leading-relaxed">
+          <article id="bio-hindi" class="space-y-5 font-hindi text-slate-700 leading-relaxed panel-animate">
             <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 leading-snug">
               छत्तीसगढ़ की राजनीति, राष्ट्रसेवा और उद्यमिता का संतुलित सफ़र — तौक़ीर रज़ा
             </h2>
@@ -361,7 +572,7 @@
             <div class="space-y-2">
               <h3 class="font-bold text-navy-900 text-lg">संघर्ष से आत्मनिर्भरता: बस्तर से रायपुर तक उद्यमिता की यात्रा</h3>
               <p>
-                राष्ट्र के प्रति समर्पण भावना और भाजपा की विचारधारा से प्रभावित होकर वे <strong>वर्ष 1994 में भाजपा के प्राथमिक सदस्य</strong> बने। इसी दौर में उनके जीवन में एक कठिन मोड़ आया जब उनके पिता स्व. श्री तौफ़ीक़ रज़ा की दोनों किडनियां खराब हो गईं। उनकी माताजी ने अपने जीवनसाथी को बचाने के लिए अपनी एक किडनी दान की, परंतु ईश्वर की मर्ज़ी के आगे पिताजी का देहांत हो गया।
+                राष्ट्र के प्रति समर्पण भावना और भाजपा की विचारधारा से प्रभावित होकर वे <strong>वर्ष 1994 में भाजपा के प्राथमिक सदस्य</strong> बने। इसी दौर में उनके जीवन में एक कठिन मोड़ आया जब उनके पिता <strong>स्व. श्री सैयद तौफ़ीक़ रज़ा</strong> की दोनों किडनियां खराब हो गईं। उनकी माताजी ने अपने जीवनसाथी को बचाने के लिए अपनी एक किडनी दान की, परंतु ईश्वर की मर्ज़ी के आगे पिताजी का देहांत हो गया।
               </p>
               <p>
                 कम उम्र में पूरे परिवार के भरण-पोषण की ज़िम्मेदारी कंधों पर आने पर तौक़ीर रज़ा ने हिम्मत नहीं हारी। पढ़ाई जारी रखते हुए उन्होंने एक निजी कंपनी में नौकरी शुरू की। कंपनी ने उन्हें <strong>जगदलपुर (बस्तर)</strong> शाखा में स्थानांतरित किया, जहां अपनी प्रतिभा, ईमानदारी और कार्यकुशलता के बल पर वे कुछ ही समय में <strong>ब्रांच मैनेजर</strong> बन गए। लगभग <strong>5 वर्षों तक बस्तर में कार्य</strong> करने के बाद वे रायपुर लौटे और स्वयं का व्यवसाय प्रारंभ किया। छोटे स्तर से शुरुआत कर आज वे कई प्रतिष्ठित कंपनियों के <strong>सी एंड एफ़ (C&amp;F) और सुपर स्टॉकिस्ट</strong> होने के साथ-साथ सफल <strong>ट्रांसपोर्टिंग व्यवसाय</strong> (<em>Alfa Services &amp; ANTAS Venture</em>) का संचालन कर रहे हैं। उनके व्यवसाय की विशेषता रही है कि उन्होंने स्थानीय युवाओं को रोजगार दिया और नए उद्यमियों का मार्गदर्शन किया।
@@ -380,7 +591,7 @@
           </article>
 
           <!-- English Biography -->
-          <article id="bio-english" class="hidden space-y-5 text-slate-700 leading-relaxed">
+          <article id="bio-english" class="hidden space-y-5 text-slate-700 leading-relaxed panel-animate">
             <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 leading-tight">
               A Balanced Journey Across Politics, National Service &amp; Entrepreneurship
             </h2>
@@ -399,7 +610,7 @@
             <div class="space-y-2">
               <h3 class="font-bold text-navy-900 text-lg">Early Resilience: From Bastar to Raipur Enterprise</h3>
               <p>
-                Inspired by nationalist ideals, he joined the BJP as a primary member in <strong>1994</strong>. Shortly thereafter, personal tragedy struck when both kidneys of his father, Lt. Shree Toufique Raza, failed. Despite his mother donating one of her kidneys, his father passed away, placing the responsibility of supporting the entire family on Touqeer Raza's shoulders.
+                Inspired by nationalist ideals, he joined the BJP as a primary member in <strong>1994</strong>. Shortly thereafter, personal tragedy struck when both kidneys of his father, <strong>Lt. Shri Syed Taufique Raza</strong>, failed. Despite his mother donating one of her kidneys, his father passed away, placing the responsibility of supporting the entire family on Touqeer Raza's shoulders.
               </p>
               <p>
                 Continuing his studies while working, he joined a private firm and was posted to <strong>Jagdalpur (Bastar)</strong>, where his dedication earned him rapid promotion to <strong>Branch Manager</strong>. After serving in Bastar for nearly five years, he returned to Raipur and founded his own business. Today, through <em>Alfa Services &amp; ANTAS Venture</em>, he operates as a C&amp;F Agent, Super Stockist, and transport entrepreneur—mentoring young entrepreneurs and generating local employment.
@@ -416,7 +627,7 @@
         </div>
 
         <!-- Right Sidebar: Structured Profile Fact Sheet -->
-        <div class="lg:col-span-5 space-y-6">
+        <div class="lg:col-span-5 space-y-6 reveal reveal-delay-1">
           <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
             <h3 class="font-serif text-lg font-bold text-navy-900 pb-3 border-b border-slate-100">
               Quick Profile &amp; Credentials
@@ -428,7 +639,7 @@
               </div>
               <div class="flex justify-between gap-4">
                 <dt class="text-slate-500">Father's Name</dt>
-                <dd class="font-medium text-slate-800 text-right">Lt. Shree Toufique Raza</dd>
+                <dd class="font-medium text-slate-800 text-right">Lt. Shri Syed Taufique Raza</dd>
               </div>
               <div class="flex justify-between gap-4">
                 <dt class="text-slate-500">Date of Birth</dt>
@@ -458,7 +669,7 @@
           </div>
 
           <!-- Highlight Quote Card -->
-          <div class="bg-navy-900 text-white rounded-2xl p-6 border-b-4 border-saffron-500">
+          <div class="bg-navy-900 text-white rounded-2xl p-6 border-b-4 border-saffron-500 shadow-lg">
             <p class="font-hindi text-base sm:text-lg font-semibold text-saffron-300 leading-relaxed">
               “बुलेट छोड़ो और बैलेट पर विश्वास करो — तुम हमारे एक जवान को मारोगे, हम 100 जवान खड़े करेंगे।”
             </p>
@@ -475,7 +686,7 @@
   <!-- 3. Positions & Organisational Roles (Arranged in Protocol Hierarchy) -->
   <section id="positions" class="py-16 sm:py-20 bg-white border-y border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
         <div>
           <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-700 bg-saffron-50 px-3 py-1 rounded-md mb-2">
             Leadership &amp; Governance
@@ -484,11 +695,11 @@
         </div>
 
         <div class="inline-flex rounded-xl bg-slate-100 p-1 self-start">
-          <button onclick="switchRoleTab('present')" id="tab-present"
+          <button type="button" onclick="switchRoleTab('present')" id="tab-present"
                   class="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-navy-900 text-white shadow-sm transition">
             Present Positions
           </button>
-          <button onclick="switchRoleTab('past')" id="tab-past"
+          <button type="button" onclick="switchRoleTab('past')" id="tab-past"
                   class="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-navy-900 transition">
             Previous &amp; Organisational Roles
           </button>
@@ -496,29 +707,29 @@
       </div>
 
       <!-- Present Positions (Protocol Order) -->
-      <div id="roles-present" class="grid md:grid-cols-2 gap-5">
-        <div class="p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 transition">
+      <div id="roles-present" class="grid md:grid-cols-2 gap-5 panel-animate">
+        <div class="card-lift p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 reveal">
           <span class="text-xs font-bold uppercase tracking-wider text-saffron-700">1 • Political Leadership</span>
           <h3 class="font-serif text-xl font-bold text-navy-900 mt-1">State Spokesperson</h3>
           <p class="text-sm font-medium text-slate-700 mt-1">Bharatiya Janata Party (BJP), Chhattisgarh</p>
           <p class="text-sm text-slate-600 mt-2.5">Representing party policy, state governance, and national discourse across regional and national news channels.</p>
         </div>
 
-        <div class="p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 transition">
+        <div class="card-lift p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 reveal reveal-delay-1">
           <span class="text-xs font-bold uppercase tracking-wider text-saffron-700">2 • National Security Outreach</span>
           <h3 class="font-serif text-xl font-bold text-navy-900 mt-1">President — FANS Raipur</h3>
           <p class="text-sm font-medium text-slate-700 mt-1">Forum for Awareness of National Security (Reg.)</p>
           <p class="text-sm text-slate-600 mt-2.5">Leading citizen security awareness, anti-Naxal peace outreach, and youth dialogue across Chhattisgarh.</p>
         </div>
 
-        <div class="p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 transition">
+        <div class="card-lift p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 reveal">
           <span class="text-xs font-bold uppercase tracking-wider text-saffron-700">3 • Social Welfare</span>
           <h3 class="font-serif text-xl font-bold text-navy-900 mt-1">State President</h3>
           <p class="text-sm font-medium text-slate-700 mt-1">Panjatani Welfare Society Chhattisgarh (Reg. No. 24555)</p>
           <p class="text-sm text-slate-600 mt-2.5">Directing community welfare, healthcare assistance, and social harmony programs across Chhattisgarh.</p>
         </div>
 
-        <div class="p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 transition">
+        <div class="card-lift p-6 rounded-2xl border border-slate-200 bg-stone-50/70 hover:border-saffron-400 reveal reveal-delay-1">
           <span class="text-xs font-bold uppercase tracking-wider text-saffron-700">4 • Education &amp; Empowerment</span>
           <h3 class="font-serif text-xl font-bold text-navy-900 mt-1">Director</h3>
           <p class="text-sm font-medium text-slate-700 mt-1">Regal Hearts Education &amp; Welfare Society Chhattisgarh (Reg.)</p>
@@ -527,48 +738,48 @@
       </div>
 
       <!-- Past & Organisational Roles (Ordered strictly by Protocol) -->
-      <div id="roles-past" class="hidden grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+      <div id="roles-past" class="hidden grid md:grid-cols-2 lg:grid-cols-3 gap-4 panel-animate">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">Government of Chhattisgarh</span>
           <h4 class="font-bold text-navy-900 mt-0.5">Member — State Minority Commission</h4>
           <p class="text-xs text-slate-600 mt-1">State-level constitutional &amp; minority welfare commission</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">National Responsibility</span>
           <h4 class="font-bold text-navy-900 mt-0.5">National Convener (Education Cell)</h4>
           <p class="text-xs text-slate-600 mt-1">Muslim Rashtriya Manch (MRM)</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">National Responsibility</span>
           <h4 class="font-bold text-navy-900 mt-0.5">National Convener (Intellectual Cell)</h4>
           <p class="text-xs text-slate-600 mt-1">Muslim Rashtriya Manch (MRM)</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">National Forum</span>
           <h4 class="font-bold text-navy-900 mt-0.5">Rashtriya Sadasya &amp; General Secretary</h4>
           <p class="text-xs text-slate-600 mt-1">Forum for Awareness of National Security (FANS)</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">State Security Forum</span>
           <h4 class="font-bold text-navy-900 mt-0.5">Secretary &amp; Media Incharge (CG)</h4>
           <p class="text-xs text-slate-600 mt-1">Forum for Integrated National Security (FINS)</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">State Party Wing</span>
           <h4 class="font-bold text-navy-900 mt-0.5">Special Invitee Member</h4>
           <p class="text-xs text-slate-600 mt-1">BJP Trade Cell, Chhattisgarh</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">District &amp; Mandal Level</span>
           <h4 class="font-bold text-navy-900 mt-0.5">Mandal Sanyojak &amp; Member</h4>
           <p class="text-xs text-slate-600 mt-1">Jila BJP Vyapar Prakoshth, Jawahar Nagar Mandal, Raipur</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">Grassroots Foundation</span>
           <h4 class="font-bold text-navy-900 mt-0.5">Booth Adhyaksh (Booth No. 137)</h4>
           <p class="text-xs text-slate-600 mt-1">Tatyapara Ward, Raipur (C.G.)</p>
         </div>
-        <div class="p-5 rounded-xl border border-slate-200 bg-stone-50">
+        <div class="card-lift p-5 rounded-xl border border-slate-200 bg-stone-50">
           <span class="text-[10px] font-bold uppercase tracking-wider text-saffron-700">Social &amp; Civic Bodies</span>
           <h4 class="font-bold text-navy-900 mt-0.5">Patron &amp; Joint Secretary</h4>
           <p class="text-xs text-slate-600 mt-1">Chhattisgarh Muslim Sangathan &amp; Mohalla Vikas Samiti (Reg. No. 25575)</p>
@@ -580,7 +791,7 @@
   <!-- 4. Landmark Rallies & Grassroots Campaigns -->
   <section id="campaigns" class="py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="max-w-2xl mb-12">
+      <div class="max-w-2xl mb-12 reveal">
         <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-700 bg-saffron-50 px-3 py-1 rounded-md mb-2">
           Fieldwork &amp; Peace Outreach
         </div>
@@ -588,8 +799,8 @@
       </div>
 
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-          <div class="flex items-center justify-between text-xs font-bold text-saffron-700 mb-2">
+        <div class="card-lift bg-white border border-slate-200 rounded-2xl p-6 shadow-sm reveal">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-saffron-700 mb-2">
             <span>23–25 MARCH 2017</span>
             <span class="bg-saffron-50 px-2.5 py-0.5 rounded">860 KM • BASTAR CORRIDOR</span>
           </div>
@@ -599,8 +810,8 @@
           </p>
         </div>
 
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-          <div class="flex items-center justify-between text-xs font-bold text-saffron-700 mb-2">
+        <div class="card-lift bg-white border border-slate-200 rounded-2xl p-6 shadow-sm reveal reveal-delay-1">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-saffron-700 mb-2">
             <span>25 MARCH 2018</span>
             <span class="bg-saffron-50 px-2.5 py-0.5 rounded">MALAIDA FORESTS • KHAIRAGARH</span>
           </div>
@@ -610,8 +821,8 @@
           </p>
         </div>
 
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-          <div class="flex items-center justify-between text-xs font-bold text-saffron-700 mb-2">
+        <div class="card-lift bg-white border border-slate-200 rounded-2xl p-6 shadow-sm reveal">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-saffron-700 mb-2">
             <span>2015</span>
             <span class="bg-saffron-50 px-2.5 py-0.5 rounded">1,400+ MEMBERS</span>
           </div>
@@ -621,8 +832,8 @@
           </p>
         </div>
 
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-          <div class="flex items-center justify-between text-xs font-bold text-saffron-700 mb-2">
+        <div class="card-lift bg-white border border-slate-200 rounded-2xl p-6 shadow-sm reveal reveal-delay-1">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-saffron-700 mb-2">
             <span>2009 – PRESENT</span>
             <span class="bg-saffron-50 px-2.5 py-0.5 rounded">ORGANISATIONAL &amp; ELECTORAL</span>
           </div>
@@ -635,35 +846,28 @@
     </div>
   </section>
 
-  <!-- 5. Leadership Gallery: -->
+  <!-- 5. Leadership Gallery (Curated 11 Leaders • Full-Frame 4:5 Portrait Cards + Swipeable Lightbox) -->
   <section id="gallery" class="py-16 sm:py-20 bg-white border-y border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-        <div>
-          <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-700 bg-saffron-50 px-3 py-1 rounded-md mb-2">
-            Public Life &amp; Leadership Gallery
-          </div>
-          <h2 class="font-serif text-3xl font-bold text-navy-900">With Prominent National &amp; State Leaders</h2>
-          <p class="text-sm text-slate-600 mt-2">
-           
-          </p>
+      <div class="mb-10 reveal">
+        <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-700 bg-saffron-50 px-3 py-1 rounded-md mb-2">
+          Public Life &amp; Leadership Gallery
         </div>
-        <div class="text-xs text-slate-500 bg-stone-50 border border-slate-200 px-3.5 py-2 rounded-xl">
-        
-        </div>
+        <h2 class="font-serif text-3xl font-bold text-navy-900">With Prominent National &amp; State Leaders</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div id="leadershipGalleryGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Protocol 1: Shri Rajnath Singh (File: leader-2.jpg / 11333.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg2', 'With Shri Rajnath Singh — Hon’ble Union Minister of Defence, Government of India')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg2" src="leader-2.jpg" alt="Touqeer Raza with Defence Minister Shri Rajnath Singh"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+        <!-- 1. Shri Rajnath Singh -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal">
+          <div onclick="openLightboxByIndex(0)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg2" data-gallery-index="0" src="leader-2.jpg" alt="Touqeer Raza with Defence Minister Shri Rajnath Singh"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback2').classList.remove('hidden');" />
             <div id="leaderFallback2" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-2.jpg</code> (<code>11333.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-2.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg2', 'leaderFallback2')" />
@@ -677,15 +881,16 @@
           </div>
         </div>
 
-        <!-- Protocol 2: Shri J. P. Nadda (File: leader-1.jpg / 11344.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg1', 'With Shri J. P. Nadda — Hon’ble Union Minister of Health & Family Welfare and Chemicals & Fertilizers; Leader of the House in Rajya Sabha')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg1" src="leader-1.jpg" alt="Touqeer Raza with Union Minister Shri J. P. Nadda"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+        <!-- 2. Shri J. P. Nadda -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal reveal-delay-1">
+          <div onclick="openLightboxByIndex(1)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg1" data-gallery-index="1" src="leader-1.jpg" alt="Touqeer Raza with Union Minister Shri J. P. Nadda"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback1').classList.remove('hidden');" />
             <div id="leaderFallback1" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-1.jpg</code> (<code>11344.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-1.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg1', 'leaderFallback1')" />
@@ -695,18 +900,20 @@
           <div class="p-4">
             <span class="text-[11px] font-bold uppercase text-saffron-700">Union Cabinet • Rajya Sabha</span>
             <h3 class="text-sm font-bold text-navy-900 mt-0.5">Shri J. P. Nadda</h3>
-            <p class="text-xs text-slate-600 mt-0.5">Hon'ble Union Minister of Health &amp; Family Welfare and Chemicals &amp; Fertilizers; Leader of the House in Rajya Sabha</p>
+            <p class="text-xs text-slate-600 mt-0.5">Hon'ble Union Minister of Health &amp; Family Welfare and Chemicals &amp; Fertilizers; Leader of the House in Rajya Sabha &amp; Former BJP National President</p>
           </div>
         </div>
-  <!-- Protocol 8: Dr. Indresh Kumar (File: leader-8.jpg / 11332.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg8', 'With Dr. Indresh Kumar — Senior RSS Leader (National Executive Member) & Margdarshak, FANS & MRM')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg8" src="leader-8.jpg" alt="Touqeer Raza with Dr. Indresh Kumar"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+
+        <!-- 3. Dr. Indresh Kumar -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal reveal-delay-2">
+          <div onclick="openLightboxByIndex(2)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg8" data-gallery-index="2" src="leader-8.jpg" alt="Touqeer Raza with Dr. Indresh Kumar"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback8').classList.remove('hidden');" />
             <div id="leaderFallback8" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-8.jpg</code> (<code>11332.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-8.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg8', 'leaderFallback8')" />
@@ -719,15 +926,17 @@
             <p class="text-xs text-slate-600 mt-0.5">Senior RSS Leader (National Executive Member) &amp; Patron, Forum for Awareness of National Security (FANS) &amp; MRM</p>
           </div>
         </div>
- <!-- Protocol 9: Shri Ram Madhav (File: leader-9.jpg / 11330.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg9', 'With Shri Ram Madhav — BJP National Vice-President & State In-charge (Tamil Nadu)')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg9" src="leader-9.jpg" alt="Touqeer Raza with BJP National Vice-President Shri Ram Madhav"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+
+        <!-- 4. Shri Ram Madhav -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal">
+          <div onclick="openLightboxByIndex(3)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg9" data-gallery-index="3" src="leader-9.jpg" alt="Touqeer Raza with BJP National Vice-President Shri Ram Madhav"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback9').classList.remove('hidden');" />
             <div id="leaderFallback9" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-9.jpg</code> (<code>11330.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-9.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg9', 'leaderFallback9')" />
@@ -740,15 +949,17 @@
             <p class="text-xs text-slate-600 mt-0.5">BJP National Vice-President &amp; State In-charge (Tamil Nadu)</p>
           </div>
         </div>
-<!-- Protocol 12: Dr. Sudhanshu Trivedi (File: leader-5.jpg / 11336.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg5', 'With Dr. Sudhanshu Trivedi — Member of Parliament (Rajya Sabha) & BJP National Spokesperson')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg5" src="leader-5.jpg" alt="Touqeer Raza with BJP National Spokesperson Dr. Sudhanshu Trivedi"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+
+        <!-- 5. Dr. Sudhanshu Trivedi -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal reveal-delay-1">
+          <div onclick="openLightboxByIndex(4)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg5" data-gallery-index="4" src="leader-5.jpg" alt="Touqeer Raza with BJP National Spokesperson Dr. Sudhanshu Trivedi"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback5').classList.remove('hidden');" />
             <div id="leaderFallback5" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-5.jpg</code> (<code>11336.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-5.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg5', 'leaderFallback5')" />
@@ -761,15 +972,17 @@
             <p class="text-xs text-slate-600 mt-0.5">Member of Parliament (Rajya Sabha) &amp; BJP National Spokesperson</p>
           </div>
         </div>
-<!-- Protocol 10: Dr. Faggan Singh Kulaste (File: leader-7.jpg / 11347.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg7', 'With Dr. Faggan Singh Kulaste — Member of Parliament (Lok Sabha — Mandla) & Former Union Minister of State')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg7" src="leader-7.jpg" alt="Touqeer Raza with Member of Parliament Dr. Faggan Singh Kulaste"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+
+        <!-- 6. Shri Faggan Singh Kulaste -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal reveal-delay-2">
+          <div onclick="openLightboxByIndex(5)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg7" data-gallery-index="5" src="leader-7.jpg" alt="Touqeer Raza with Member of Parliament Shri Faggan Singh Kulaste"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback7').classList.remove('hidden');" />
             <div id="leaderFallback7" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-7.jpg</code> (<code>11347.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-7.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg7', 'leaderFallback7')" />
@@ -778,19 +991,21 @@
           </div>
           <div class="p-4">
             <span class="text-[11px] font-bold uppercase text-saffron-700">Parliament • Lok Sabha</span>
-            <h3 class="text-sm font-bold text-navy-900 mt-0.5">Dr. Faggan Singh Kulaste</h3>
+            <h3 class="text-sm font-bold text-navy-900 mt-0.5">Shri Faggan Singh Kulaste</h3>
             <p class="text-xs text-slate-600 mt-0.5">Member of Parliament (Lok Sabha — Mandla) &amp; Former Union Minister of State, Government of India</p>
           </div>
         </div>
-   <!-- Protocol 6: Dr. Raman Singh (File: leader-4.jpg / 11334.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg4', 'With Dr. Raman Singh — Hon’ble Speaker, Chhattisgarh Legislative Assembly & Former Chief Minister')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg4" src="leader-4.jpg" alt="Touqeer Raza with Chhattisgarh Assembly Speaker Dr. Raman Singh"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+
+        <!-- 7. Dr. Raman Singh -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal">
+          <div onclick="openLightboxByIndex(6)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg4" data-gallery-index="6" src="leader-4.jpg" alt="Touqeer Raza with Chhattisgarh Assembly Speaker Dr. Raman Singh"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback4').classList.remove('hidden');" />
             <div id="leaderFallback4" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-4.jpg</code> (<code>11334.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-4.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg4', 'leaderFallback4')" />
@@ -804,16 +1019,16 @@
           </div>
         </div>
 
-
-        <!-- Protocol 3: Shri Vishnu Deo Sai (File: leader-3.jpg / 11318.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg3', 'With Shri Vishnu Deo Sai — Hon’ble Chief Minister of Chhattisgarh')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg3" src="leader-3.jpg" alt="Touqeer Raza with Chhattisgarh Chief Minister Shri Vishnu Deo Sai"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+        <!-- 8. Shri Vishnu Deo Sai -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal reveal-delay-1">
+          <div onclick="openLightboxByIndex(7)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg3" data-gallery-index="7" src="leader-3.jpg" alt="Touqeer Raza with Chhattisgarh Chief Minister Shri Vishnu Deo Sai"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback3').classList.remove('hidden');" />
             <div id="leaderFallback3" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-3.jpg</code> (<code>11318.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-3.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg3', 'leaderFallback3')" />
@@ -826,15 +1041,17 @@
             <p class="text-xs text-slate-600 mt-0.5">Hon'ble Chief Minister of Chhattisgarh</p>
           </div>
         </div>
- <!-- Protocol 14: Shri Kiran Singh Deo (File: leader-10.jpg / 11325.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg10', 'With Shri Kiran Singh Deo — State President, Bharatiya Janata Party (BJP) Chhattisgarh & MLA (Jagdalpur)')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg10" src="leader-10.jpg" alt="Touqeer Raza with BJP Chhattisgarh State President Shri Kiran Singh Deo"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+
+        <!-- 9. Shri Kiran Singh Deo -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal reveal-delay-2">
+          <div onclick="openLightboxByIndex(8)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg10" data-gallery-index="8" src="leader-10.jpg" alt="Touqeer Raza with BJP Chhattisgarh State President Shri Kiran Singh Deo"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback10').classList.remove('hidden');" />
             <div id="leaderFallback10" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-10.jpg</code> (<code>11325.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-10.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg10', 'leaderFallback10')" />
@@ -848,15 +1065,16 @@
           </div>
         </div>
 
-        <!-- Protocol 4: Shri Arun Sao (File: leader-11.jpg / 11321.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg11', 'With Shri Arun Sao — Hon’ble Deputy Chief Minister of Chhattisgarh')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg11" src="leader-11.jpg" alt="Touqeer Raza with Chhattisgarh Deputy Chief Minister Shri Arun Sao"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+        <!-- 10. Shri Arun Sao -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal">
+          <div onclick="openLightboxByIndex(9)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg11" data-gallery-index="9" src="leader-11.jpg" alt="Touqeer Raza with Chhattisgarh Deputy Chief Minister Shri Arun Sao"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback11').classList.remove('hidden');" />
             <div id="leaderFallback11" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-11.jpg</code> (<code>11321.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-11.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg11', 'leaderFallback11')" />
@@ -866,19 +1084,20 @@
           <div class="p-4">
             <span class="text-[11px] font-bold uppercase text-saffron-700">State Executive</span>
             <h3 class="text-sm font-bold text-navy-900 mt-0.5">Shri Arun Sao</h3>
-            <p class="text-xs text-slate-600 mt-0.5">Hon'ble Deputy Chief Minister of Chhattisgarh (Public Works, PHE, Law &amp; Urban Administration)</p>
+            <p class="text-xs text-slate-600 mt-0.5">Hon'ble Deputy Chief Minister of Chhattisgarh (Public Works, Public Health Engineering &amp; Urban Administration)</p>
           </div>
         </div>
 
-        <!-- Protocol 5: Shri Vijay Sharma (File: leader-12.jpg / 11329.jpg) -->
-        <div class="bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group">
-          <div onclick="openLightbox('leaderImg12', 'With Shri Vijay Sharma — Hon’ble Deputy Chief Minister & Home Minister of Chhattisgarh')"
-               class="aspect-[4/5] bg-slate-100 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
-            <img id="leaderImg12" src="leader-12.jpg" alt="Touqeer Raza with Chhattisgarh Deputy Chief Minister Shri Vijay Sharma"
-                 class="w-full h-full object-contain bg-slate-900/5 group-hover:scale-105 transition duration-300"
+        <!-- 11. Shri Vijay Sharma -->
+        <div class="card-lift bg-stone-50/70 border border-slate-200 rounded-2xl overflow-hidden shadow-sm group reveal reveal-delay-1">
+          <div onclick="openLightboxByIndex(10)"
+               class="aspect-[4/5] bg-gradient-to-b from-slate-100 to-slate-200/70 relative flex items-center justify-center overflow-hidden cursor-zoom-in">
+            <img id="leaderImg12" data-gallery-index="10" src="leader-12.jpg" alt="Touqeer Raza with Chhattisgarh Deputy Chief Minister Shri Vijay Sharma"
+                 loading="lazy" decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-[1.03] transition duration-300"
                  onerror="this.classList.add('hidden'); document.getElementById('leaderFallback12').classList.remove('hidden');" />
             <div id="leaderFallback12" class="hidden text-center p-5" onclick="event.stopPropagation()">
-              <p class="text-xs font-semibold text-slate-600">File: <code>leader-12.jpg</code> (<code>11329.jpg</code>)</p>
+              <p class="text-xs font-semibold text-slate-600">File: <code>leader-12.jpg</code></p>
               <label class="mt-2 inline-block cursor-pointer text-xs bg-navy-900 text-white px-3 py-1.5 rounded-lg hover:bg-saffron-600 transition">
                 Preview Photo
                 <input type="file" accept="image/*" class="hidden" onchange="previewGalleryPhoto(event, 'leaderImg12', 'leaderFallback12')" />
@@ -888,25 +1107,9 @@
           <div class="p-4">
             <span class="text-[11px] font-bold uppercase text-saffron-700">State Executive &amp; Home</span>
             <h3 class="text-sm font-bold text-navy-900 mt-0.5">Shri Vijay Sharma</h3>
-            <p class="text-xs text-slate-600 mt-0.5">Hon'ble Deputy Chief Minister &amp; Home Minister of Chhattisgarh (Home, Panchayat &amp; Rural Development)</p>
+            <p class="text-xs text-slate-600 mt-0.5">Hon'ble Deputy Chief Minister &amp; Home Minister of Chhattisgarh (Home &amp; Jail, Panchayat &amp; Rural Development, Science &amp; Technology)</p>
           </div>
         </div>
-
-     
-       
-      
-
-       
-
-        
-        
-        
-
-      
-
-       
-
-       
 
       </div>
     </div>
@@ -915,7 +1118,7 @@
   <!-- 6. TV Debates & Media Appearances Section (Protocol Ordered) -->
   <section id="debates" class="py-16 sm:py-20 bg-navy-900 text-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 reveal">
         <div>
           <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-400 bg-white/10 px-3 py-1 rounded-md mb-2">
             Media &amp; Television Debates
@@ -928,9 +1131,9 @@
 
         <!-- Filter Buttons -->
         <div class="flex flex-wrap gap-2">
-          <button onclick="filterDebates('all', this)" class="debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-saffron-600 text-white transition">All (16)</button>
-          <button onclick="filterDebates('youtube', this)" class="debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/10 text-slate-300 hover:bg-white/20 transition">YouTube Debates</button>
-          <button onclick="filterDebates('social', this)" class="debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/10 text-slate-300 hover:bg-white/20 transition">X &amp; Facebook Clips</button>
+          <button type="button" onclick="filterDebates('all', this)" class="debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-saffron-600 text-white shadow-sm transition">All (16)</button>
+          <button type="button" onclick="filterDebates('youtube', this)" class="debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/10 text-slate-300 hover:bg-white/20 transition">TV Broadcasts (14)</button>
+          <button type="button" onclick="filterDebates('social', this)" class="debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/10 text-slate-300 hover:bg-white/20 transition">X &amp; Facebook Clips (2)</button>
         </div>
       </div>
 
@@ -939,259 +1142,259 @@
 
         <!-- 1. DD News -->
         <a href="https://youtu.be/ddVT6NyYupE" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/ddVT6NyYupE/hqdefault.jpg" alt="DD News National Discussion" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">DD News • National</span>
+            <img src="https://img.youtube.com/vi/ddVT6NyYupE/hqdefault.jpg" alt="DD News National Discussion" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">DD News • National</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               DD News National Discussion — न्यू इंडिया संकल्प एवं सामाजिक सुधार
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 2. IBC24 EC Controversy -->
         <a href="https://youtu.be/TjKVjNz1JMk" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-1">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/TjKVjNz1JMk/hqdefault.jpg" alt="IBC24 The Big Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">IBC24 • The Big Debate</span>
-            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-90 group-hover:opacity-100">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+            <img src="https://img.youtube.com/vi/TjKVjNz1JMk/hqdefault.jpg" alt="IBC24 The Big Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">IBC24 • The Big Debate</span>
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               EC पर सियासी जंग.. विरोध के कई रंग! | CG Ki Baat — शह मात The Big Debate
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 3. Masjid Dargah Tiranga -->
         <a href="https://youtu.be/aeLuZnjE5xw" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-2">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/aeLuZnjE5xw/hqdefault.jpg" alt="Aaj Ka Mudda Tiranga Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-saffron-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">Aaj Ka Mudda</span>
+            <img src="https://img.youtube.com/vi/aeLuZnjE5xw/hqdefault.jpg" alt="Aaj Ka Mudda Tiranga Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-saffron-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">Aaj Ka Mudda</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               Aaj Ka Mudda: मस्जिद-दरगाह में तिरंगा.. देशप्रेम पर सियासी पंगा!
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 4. Naxal Par Bawal -->
         <a href="https://youtu.be/xi1dcNATtW0" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/xi1dcNATtW0/hqdefault.jpg" alt="Naxal Par Bawal Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-saffron-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">Special Debate</span>
+            <img src="https://img.youtube.com/vi/xi1dcNATtW0/hqdefault.jpg" alt="Naxal Par Bawal Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-saffron-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">Special Debate</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               नक्सल पर बवाल — बस्तर शांति, आंतरिक सुरक्षा और विकास पर तीखी बहस
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 5. BS TV Jhiram -->
         <a href="https://youtu.be/CeoWdIxnYFk" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-1">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/CeoWdIxnYFk/hqdefault.jpg" alt="BS TV Digital Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">BS TV Digital</span>
+            <img src="https://img.youtube.com/vi/CeoWdIxnYFk/hqdefault.jpg" alt="BS TV Digital Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">BS TV Digital</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               BS TV Digital: 'झीरम का दर्द' कम हुआ क्या..? न्याय और सुरक्षा पर परिचर्चा
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 6. BS TV Debate -->
         <a href="https://youtu.be/POWssgOdB28" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-2">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/POWssgOdB28/hqdefault.jpg" alt="BS TV Live Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">BS TV</span>
+            <img src="https://img.youtube.com/vi/POWssgOdB28/hqdefault.jpg" alt="BS TV Live Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">BS TV</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               BS TV Prime Debate — छत्तीसगढ़ के प्रमुख राजनीतिक और जनहित मुद्दे
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 7. INH 24x7 -->
         <a href="https://www.youtube.com/live/jFf8wiGZBws" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/jFf8wiGZBws/hqdefault.jpg" alt="INH 24x7 Live Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-red-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">INH 24x7</span>
+            <img src="https://img.youtube.com/vi/jFf8wiGZBws/hqdefault.jpg" alt="INH 24x7 Live Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-red-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">INH 24x7</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               INH 24x7 Live: जनसुरक्षा, प्रशासनिक जवाबदेही और प्रदेश के मुद्दों पर बहस
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 8. Hindi Khabar -->
         <a href="https://youtu.be/e_Zpn81arqw" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-1">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/e_Zpn81arqw/hqdefault.jpg" alt="Hindi Khabar Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">Hindi Khabar</span>
+            <img src="https://img.youtube.com/vi/e_Zpn81arqw/hqdefault.jpg" alt="Hindi Khabar Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">Hindi Khabar</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               Hindi Khabar: वोटर लिस्ट और SIR प्रक्रिया पर सियासी बहस में भाजपा का पक्ष
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 9. TV24 MP/CG -->
         <a href="https://youtu.be/UPSFgvWM_cE" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-2">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/UPSFgvWM_cE/hqdefault.jpg" alt="TV24 MP CG Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-indigo-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">TV24 MP/CG</span>
+            <img src="https://img.youtube.com/vi/UPSFgvWM_cE/hqdefault.jpg" alt="TV24 MP CG Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-indigo-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">TV24 MP/CG</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               मुद्दा आज का | कांग्रेस VS भाजपा — TV24 MP/CG विशेष परिचर्चा
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 10. Debate g2IhGa7EjOM -->
         <a href="https://youtu.be/g2IhGa7EjOM" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/g2IhGa7EjOM/hqdefault.jpg" alt="TV Political Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">TV Debate</span>
+            <img src="https://img.youtube.com/vi/g2IhGa7EjOM/hqdefault.jpg" alt="TV Political Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">TV Debate</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               छत्तीसगढ़ राजनीति और विकास नीतियों पर लाइव टेलीविज़न डिबेट
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 11. Debate oPHdPzKdLW8 -->
         <a href="https://youtu.be/oPHdPzKdLW8" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-1">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/oPHdPzKdLW8/hqdefault.jpg" alt="TV Political Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">TV Debate</span>
+            <img src="https://img.youtube.com/vi/oPHdPzKdLW8/hqdefault.jpg" alt="TV Political Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">TV Debate</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               राष्ट्रीय एवं प्रादेशिक समसामयिक विषयों पर प्रमुख परिचर्चा
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 12. Debate MJgEOU3vRn8 -->
         <a href="https://youtu.be/MJgEOU3vRn8" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-2">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/MJgEOU3vRn8/hqdefault.jpg" alt="TV Political Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">TV Debate</span>
+            <img src="https://img.youtube.com/vi/MJgEOU3vRn8/hqdefault.jpg" alt="TV Political Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">TV Debate</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               जनसरोकार और संगठनात्मक नीतियों पर लाइव न्यूज़ डिबेट
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 13. Debate BdfyTQseKV4 -->
         <a href="https://youtu.be/BdfyTQseKV4" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/BdfyTQseKV4/hqdefault.jpg" alt="TV Political Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">TV Debate</span>
+            <img src="https://img.youtube.com/vi/BdfyTQseKV4/hqdefault.jpg" alt="TV Political Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">TV Debate</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               प्रदेश की राजनीति और सामाजिक समरसता पर विशेष बहस
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 14. Debate ni6FNJJ_VpY -->
         <a href="https://youtu.be/ni6FNJJ_VpY" target="_blank" rel="noopener" data-type="youtube"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl overflow-hidden flex flex-col reveal reveal-delay-1">
           <div class="relative aspect-video bg-slate-800 overflow-hidden">
-            <img src="https://img.youtube.com/vi/ni6FNJJ_VpY/hqdefault.jpg" alt="TV Political Debate" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">TV Debate</span>
+            <img src="https://img.youtube.com/vi/ni6FNJJ_VpY/hqdefault.jpg" alt="TV Political Debate" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <span class="absolute top-3 left-3 bg-slate-700 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded shadow">TV Debate</span>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-saffron-600 text-white flex items-center justify-center shadow-lg">▶</div>
+              <div class="w-12 h-12 rounded-full bg-saffron-600 group-hover:scale-110 text-white flex items-center justify-center shadow-lg transition">▶</div>
             </div>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-hindi font-semibold text-sm text-white group-hover:text-saffron-300 transition">
               प्रमुख टेलीविज़न परिचर्चा — भाजपा छत्तीसगढ़ का आधिकारिक पक्ष
             </h3>
-            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch on YouTube →</span>
+            <span class="text-xs text-saffron-400 font-medium mt-3 inline-block">Watch Broadcast →</span>
           </div>
         </a>
 
         <!-- 15. IBC24 X Status -->
         <a href="https://x.com/IBC24News/status/2082042603680432615" target="_blank" rel="noopener" data-type="social"
-           class="debate-card group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl p-5 flex flex-col justify-between transition">
+           class="debate-card card-lift group bg-white/5 border border-white/10 hover:border-saffron-500 rounded-2xl p-5 flex flex-col justify-between reveal reveal-delay-2">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="bg-black text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded border border-white/20">IBC24 News • X</span>
@@ -1206,7 +1409,7 @@
         </a>
 
         <!-- 16. IBC24 Facebook Video + FB Clip -->
-        <div data-type="social" class="debate-card bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col justify-between space-y-4">
+        <div data-type="social" class="debate-card card-lift bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col justify-between space-y-4 reveal">
           <div>
             <span class="bg-blue-600 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">Facebook Broadcasts</span>
             <h3 class="font-hindi font-semibold text-base text-white mt-3">
@@ -1229,10 +1432,10 @@
     </div>
   </section>
 
-  <!-- 7. Automatic Latest Social Media Feed (X, Instagram & Facebook) -->
+  <!-- 7. Live Social Media Feed & Official Hub (X, Instagram & Facebook) -->
   <section id="social-feed" class="py-16 sm:py-20 bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="max-w-2xl mb-10">
+      <div class="max-w-2xl mb-10 reveal">
         <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-700 bg-saffron-50 px-3 py-1 rounded-md mb-2">
           Live Social Updates
         </div>
@@ -1242,35 +1445,63 @@
         </p>
       </div>
 
-      <!-- AUTO-AGGREGATOR WIDGET SLOT -->
-      <div id="auto-social-widget-slot" class="mb-8"></div>
-
-      <!-- Native 3-Column Live Social Hub -->
-      <div class="grid lg:grid-cols-3 gap-6 items-start">
-
-        <!-- Column 1: Automatic X (Twitter) Timeline -->
-        <div class="bg-stone-50 border border-slate-200 rounded-2xl p-4">
-          <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-            <span class="font-bold text-sm text-navy-900">X (Twitter) • @touqeerrazabjp</span>
-            <a href="https://x.com/touqeerrazabjp" target="_blank" rel="noopener" class="text-xs font-semibold text-saffron-700 hover:underline">Follow →</a>
+      <!-- AUTO-SYNCED MULTI-NETWORK LIVE WALL (Automatically activates when CURATOR_FEED_ID is configured in script below) -->
+      <div id="curator-feed-wrapper" class="hidden mb-10 bg-stone-50 border border-slate-200 rounded-2xl p-4 sm:p-6">
+        <div class="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="font-bold text-sm text-navy-900">Live Automatic Social Stream</span>
           </div>
-          <div class="h-[440px] overflow-y-auto rounded-xl bg-white">
-            <a class="twitter-timeline" data-height="440" data-theme="light" href="https://twitter.com/touqeerrazabjp?ref_src=twsrc%5Etfw">
-              Posts by @touqeerrazabjp
-            </a>
+          <span class="text-xs text-slate-500">X • Instagram • Facebook</span>
+        </div>
+        <div id="curator-feed-default-feed-layout"></div>
+      </div>
+
+      <!-- Executive 3-Column Social Hub (with Live Official Facebook Page Timeline Built In) -->
+      <div class="grid lg:grid-cols-3 gap-6 items-stretch">
+
+        <!-- Column 1: X (Twitter) Official Feed Card -->
+        <div class="card-lift bg-stone-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between reveal">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200">
+              <span class="font-bold text-sm text-navy-900">X (Twitter) • @touqeerrazabjp</span>
+              <a href="https://x.com/touqeerrazabjp" target="_blank" rel="noopener" class="text-xs font-semibold text-saffron-700 hover:underline">Follow →</a>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5 text-center space-y-3.5 shadow-sm">
+              <div class="w-16 h-16 mx-auto rounded-full bg-navy-900 text-white flex items-center justify-center font-serif font-bold text-2xl shadow-md">
+                𝕏
+              </div>
+              <div>
+                <h3 class="font-bold text-navy-900 text-base">Touqeer Raza (तौक़ीर रज़ा)</h3>
+                <p class="text-xs text-slate-500">@touqeerrazabjp • Raipur, Chhattisgarh</p>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Latest political statements, press briefings, TV debate clips, and governance updates from Bharatiya Janata Party Chhattisgarh.
+              </p>
+              <a href="https://x.com/touqeerrazabjp" target="_blank" rel="noopener"
+                 class="inline-block w-full py-2.5 px-4 rounded-xl bg-navy-900 hover:bg-saffron-600 active:scale-95 text-white text-xs font-bold shadow-sm transition">
+                View Latest X Posts &amp; Threads
+              </a>
+            </div>
           </div>
+          <p class="text-[11px] text-slate-500 text-center mt-4">
+            Official X Profile • x.com/touqeerrazabjp
+          </p>
         </div>
 
         <!-- Column 2: Instagram Official Feed Card -->
-        <div class="bg-stone-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between h-[508px]">
+        <div class="card-lift bg-stone-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between reveal reveal-delay-1">
           <div>
-            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200">
               <span class="font-bold text-sm text-navy-900">Instagram • @touqeerraza_official</span>
               <a href="https://www.instagram.com/touqeerraza_official/" target="_blank" rel="noopener" class="text-xs font-semibold text-saffron-700 hover:underline">Open →</a>
             </div>
-            <div class="bg-white border border-slate-200 rounded-xl p-5 text-center space-y-3">
-              <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 p-0.5">
-                <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-serif font-bold text-navy-900">TR</div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5 text-center space-y-3.5 shadow-sm">
+              <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 p-0.5 shadow-md">
+                <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-serif font-bold text-navy-900 text-lg">TR</div>
               </div>
               <div>
                 <h3 class="font-bold text-navy-900 text-base">Touqeer Raza</h3>
@@ -1280,42 +1511,45 @@
                 Reels, TV debate highlights, rally moments, and daily organisational updates from Bharatiya Janata Party Chhattisgarh.
               </p>
               <a href="https://www.instagram.com/touqeerraza_official/" target="_blank" rel="noopener"
-                 class="inline-block w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-saffron-600 to-pink-600 text-white text-xs font-bold shadow-sm hover:opacity-95 transition">
+                 class="inline-block w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-saffron-600 to-pink-600 hover:opacity-95 active:scale-95 text-white text-xs font-bold shadow-sm transition">
                 View Latest Instagram Reels &amp; Posts
               </a>
             </div>
           </div>
-          <p class="text-[11px] text-slate-500 text-center">
-            Tip: Connect <code>@touqeerraza_official</code> in Juicer.io / Elfsight and paste into <code>#auto-social-widget-slot</code> for full auto-grid sync.
+          <p class="text-[11px] text-slate-500 text-center mt-4">
+            Official Instagram • @touqeerraza_official
           </p>
         </div>
 
-        <!-- Column 3: Facebook Official Feed Card -->
-        <div class="bg-stone-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between h-[508px]">
+        <!-- Column 3: Facebook Live Page Plugin + Direct Fallback -->
+        <div class="card-lift bg-stone-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between reveal reveal-delay-2">
           <div>
-            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200">
               <span class="font-bold text-sm text-navy-900">Facebook • TouqeerRazaBJP</span>
               <a href="https://www.facebook.com/TouqeerRazaBJP" target="_blank" rel="noopener" class="text-xs font-semibold text-saffron-700 hover:underline">Open →</a>
             </div>
-            <div class="bg-white border border-slate-200 rounded-xl p-5 text-center space-y-3">
-              <div class="w-16 h-16 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center font-serif font-bold text-xl">
-                f
-              </div>
-              <div>
-                <h3 class="font-bold text-navy-900 text-base">Touqeer Raza (तौक़ीर रज़ा)</h3>
-                <p class="text-xs text-slate-500">facebook.com/TouqeerRazaBJP</p>
-              </div>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Live broadcasts, public announcements, press statements, and community events across Raipur and Chhattisgarh.
-              </p>
-              <a href="https://www.facebook.com/TouqeerRazaBJP" target="_blank" rel="noopener"
-                 class="inline-block w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition">
-                View Official Facebook Feed
-              </a>
+            <!-- Native Meta Official Live Facebook Timeline Embed -->
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+              <iframe
+                title="Touqeer Raza Official Facebook Live Feed"
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTouqeerRazaBJP&tabs=timeline&width=340&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+                width="100%"
+                height="300"
+                style="border:none;overflow:hidden;"
+                scrolling="no"
+                frameborder="0"
+                loading="lazy"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+              </iframe>
             </div>
+            <a href="https://www.facebook.com/TouqeerRazaBJP" target="_blank" rel="noopener"
+               class="mt-3 inline-block w-full text-center py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold shadow-sm transition">
+              Open Official Facebook Page
+            </a>
           </div>
-          <p class="text-[11px] text-slate-500 text-center">
-            Verified public profile handle matching <code>@touqeerrazabjp</code>.
+          <p class="text-[11px] text-slate-500 text-center mt-4">
+            Live Facebook Timeline • facebook.com/TouqeerRazaBJP
           </p>
         </div>
 
@@ -1329,7 +1563,7 @@
       <div class="grid lg:grid-cols-12 gap-10">
 
         <!-- Office Details -->
-        <div class="lg:col-span-5 space-y-6">
+        <div class="lg:col-span-5 space-y-6 reveal">
           <div>
             <div class="inline-block text-xs font-bold uppercase tracking-widest text-saffron-700 bg-saffron-50 px-3 py-1 rounded-md mb-2">
               Public Office &amp; Media Desk
@@ -1341,30 +1575,37 @@
           </div>
 
           <div class="space-y-4 text-sm">
-            <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
               <span class="text-xs font-bold uppercase text-saffron-700">Office Address</span>
               <p class="font-medium text-navy-900 mt-1">GT-1, Ground Floor, DM Plaza, Chhotapara, Raipur (C.G.)</p>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
               <span class="text-xs font-bold uppercase text-saffron-700">Permanent Residence</span>
               <p class="font-medium text-navy-900 mt-1">Lalita Chowk, Mominpara, Tatyapara Ward, Jawahar Nagar Mandal, Raipur (C.G.)</p>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
               <div>
                 <span class="text-xs font-bold uppercase text-saffron-700">Official Email</span>
-                <p class="font-bold text-navy-900 mt-0.5">touqeerrazabjp@gmail.com</p>
+                <p class="font-bold text-navy-900 mt-0.5 break-all">touqeerrazabjp@gmail.com</p>
               </div>
-              <a href="mailto:touqeerrazabjp@gmail.com" class="inline-flex justify-center items-center px-4 py-2 rounded-lg bg-navy-900 text-white text-xs font-semibold hover:bg-saffron-600 transition">
-                Email Office
-              </a>
+              <div class="flex flex-wrap gap-2">
+                <a href="mailto:touqeerrazabjp@gmail.com"
+                   class="inline-flex justify-center items-center px-4 py-2 rounded-lg bg-navy-900 text-white text-xs font-semibold hover:bg-saffron-600 active:scale-95 transition">
+                  Email Office
+                </a>
+                <button type="button" onclick="copyOfficeEmail()"
+                        class="inline-flex justify-center items-center px-3.5 py-2 rounded-lg border border-slate-300 bg-stone-50 text-slate-700 text-xs font-semibold hover:bg-slate-100 active:scale-95 transition">
+                  Copy Email
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Direct Email Inquiry Form -->
-        <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm reveal reveal-delay-1">
           <h3 class="font-serif text-xl font-bold text-navy-900">Send an Official Message</h3>
           <p class="text-xs sm:text-sm text-slate-500 mt-1">
             Compose your message below to open a pre-formatted email directly to <strong>touqeerrazabjp@gmail.com</strong>.
@@ -1373,20 +1614,21 @@
           <form onsubmit="sendOfficeEmail(event)" class="mt-6 space-y-4">
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Your Full Name *</label>
+                <label for="senderName" class="block text-xs font-semibold text-slate-700 mb-1">Your Full Name *</label>
                 <input type="text" id="senderName" required placeholder="e.g., Rajesh Sharma"
-                       class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-saffron-600" />
+                       class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500/20 focus:border-saffron-600 transition" />
               </div>
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">City / Ward / Media House</label>
+                <label for="senderLocation" class="block text-xs font-semibold text-slate-700 mb-1">City / Ward / Media House</label>
                 <input type="text" id="senderLocation" placeholder="e.g., Raipur / News Desk"
-                       class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-saffron-600" />
+                       class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500/20 focus:border-saffron-600 transition" />
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Purpose of Inquiry</label>
-              <select id="senderSubject" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:border-saffron-600">
+              <label for="senderSubject" class="block text-xs font-semibold text-slate-700 mb-1">Purpose of Inquiry</label>
+              <select id="senderSubject"
+                      class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm bg-white focus:outline-none focus:ring-2 focus:ring-saffron-500/20 focus:border-saffron-600 transition">
                 <option value="Public Grievance / Civic Assistance">Public Grievance / Civic Assistance</option>
                 <option value="Media / TV Debate Invitation">Media / TV Debate Invitation</option>
                 <option value="Social / Community Event Invitation">Social / Community Event Invitation</option>
@@ -1395,14 +1637,14 @@
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Message *</label>
+              <label for="senderMessage" class="block text-xs font-semibold text-slate-700 mb-1">Message *</label>
               <textarea id="senderMessage" rows="4" required placeholder="Write your message here..."
-                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-saffron-600"></textarea>
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500/20 focus:border-saffron-600 transition"></textarea>
             </div>
 
             <div class="pt-2">
               <button type="submit"
-                      class="inline-flex items-center gap-2 bg-saffron-600 hover:bg-saffron-700 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-sm transition">
+                      class="inline-flex items-center gap-2 bg-saffron-600 hover:bg-saffron-700 active:scale-95 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-sm transition">
                 <span>Send Official Email</span>
               </button>
             </div>
@@ -1416,7 +1658,7 @@
   <!-- Footer -->
   <footer class="bg-navy-950 text-slate-400 py-10 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-      <div>
+      <div class="text-center sm:text-left">
         <span class="font-serif font-bold text-white text-sm">Touqeer Raza (तौक़ीर रज़ा)</span>
         <span class="mx-2">•</span>
         <span>Official Public Portal — touqeerraza.in</span>
@@ -1429,23 +1671,105 @@
     </div>
   </footer>
 
-  <!-- Full-Screen Lightbox Modal for Leadership Gallery -->
-  <div id="photoLightbox" onclick="closeLightbox()" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="max-w-3xl w-full bg-navy-900 border border-white/15 rounded-2xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
-      <div class="relative bg-black flex items-center justify-center max-h-[75vh]">
-        <img id="lightboxImg" src="" alt="" class="max-h-[75vh] w-auto object-contain" />
-        <button onclick="closeLightbox()" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/70 text-white hover:bg-saffron-600 transition font-bold">✕</button>
+  <!-- Floating Back-to-Top Button -->
+  <button id="backToTopBtn" type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Scroll back to top"
+          class="fixed right-4 sm:right-6 bottom-5 z-40 w-11 h-11 rounded-full bg-navy-900/90 hover:bg-saffron-600 text-white shadow-xl border border-white/15 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none translate-y-3 transition-all duration-300">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <!-- Toast Notification -->
+  <div id="toastNotice" role="status" aria-live="polite"
+       class="fixed left-1/2 bottom-6 z-50 bg-navy-900 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-2xl border border-white/15">
+    Official email copied to clipboard
+  </div>
+
+  <!-- Full-Screen Lightbox Modal (Keyboard + Touch Swipe Navigation) -->
+  <div id="photoLightbox" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Leadership photo viewer"
+       class="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-5">
+    <div class="lightbox-panel max-w-3xl w-full bg-navy-900 border border-white/15 rounded-2xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <div id="lightboxSwipeArea" class="relative bg-black flex items-center justify-center min-h-[260px] max-h-[75vh]">
+        <img id="lightboxImg" src="" alt="" class="max-h-[75vh] w-auto object-contain select-none" />
+
+        <!-- Previous Button -->
+        <button type="button" onclick="stepLightbox(-1)" aria-label="Previous photo"
+                class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/65 hover:bg-saffron-600 text-white flex items-center justify-center transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+
+        <!-- Next Button -->
+        <button type="button" onclick="stepLightbox(1)" aria-label="Next photo"
+                class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/65 hover:bg-saffron-600 text-white flex items-center justify-center transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+
+        <!-- Close Button -->
+        <button type="button" onclick="closeLightbox()" aria-label="Close photo viewer"
+                class="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/70 text-white hover:bg-saffron-600 transition font-bold">✕</button>
+
+        <!-- Counter Badge -->
+        <span id="lightboxCounter" class="absolute top-3 left-3 text-[11px] font-semibold bg-black/70 text-slate-200 px-2.5 py-1 rounded-full">1 / 11</span>
       </div>
       <div class="p-4 text-center">
-        <p id="lightboxCaption" class="text-sm font-semibold text-white"></p>
+        <p id="lightboxCaption" class="text-xs sm:text-sm font-semibold text-white leading-snug"></p>
       </div>
     </div>
   </div>
 
-  <!-- Official X Timeline Widget Script -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
   <script>
+    // =========================================================================
+    // AUTOMATIC LIVE SOCIAL STREAM CONFIG (X + Instagram + Facebook)
+    // Create a free 3-source feed on curator.io (auto-updates every 24h) and
+    // paste your Published Feed ID between the quotes below — zero other edits needed.
+    // Example: const CURATOR_FEED_ID = "abc12345-6789-0def-1234-567890abcdef";
+    // =========================================================================
+    const CURATOR_FEED_ID = "";
+
+    if (CURATOR_FEED_ID.trim()) {
+      document.getElementById('curator-feed-wrapper').classList.remove('hidden');
+      const s = document.createElement('script');
+      s.async = true;
+      s.charset = 'UTF-8';
+      s.src = `https://cdn.curator.io/published/${encodeURIComponent(CURATOR_FEED_ID.trim())}.js`;
+      document.body.appendChild(s);
+    }
+
+    // Leadership Gallery Data (Matches Exact Curated 11-Leader Order)
+    const galleryItems = [
+      { imgId: 'leaderImg2',  caption: 'With Shri Rajnath Singh — Hon’ble Union Minister of Defence, Government of India & Former BJP National President' },
+      { imgId: 'leaderImg1',  caption: 'With Shri J. P. Nadda — Hon’ble Union Minister of Health & Family Welfare and Chemicals & Fertilizers; Leader of the House in Rajya Sabha' },
+      { imgId: 'leaderImg8',  caption: 'With Dr. Indresh Kumar — Senior RSS Leader (National Executive Member) & Patron, FANS & Muslim Rashtriya Manch' },
+      { imgId: 'leaderImg9',  caption: 'With Shri Ram Madhav — BJP National Vice-President & State In-charge (Tamil Nadu)' },
+      { imgId: 'leaderImg5',  caption: 'With Dr. Sudhanshu Trivedi — Member of Parliament (Rajya Sabha) & BJP National Spokesperson' },
+      { imgId: 'leaderImg7',  caption: 'With Shri Faggan Singh Kulaste — Member of Parliament (Lok Sabha — Mandla) & Former Union Minister of State' },
+      { imgId: 'leaderImg4',  caption: 'With Dr. Raman Singh — Hon’ble Speaker, Chhattisgarh Legislative Assembly & Former Chief Minister (3 Terms)' },
+      { imgId: 'leaderImg3',  caption: 'With Shri Vishnu Deo Sai — Hon’ble Chief Minister of Chhattisgarh' },
+      { imgId: 'leaderImg10', caption: 'With Shri Kiran Singh Deo — State President, Bharatiya Janata Party (BJP) Chhattisgarh & MLA (Jagdalpur)' },
+      { imgId: 'leaderImg11', caption: 'With Shri Arun Sao — Hon’ble Deputy Chief Minister of Chhattisgarh (PWD, PHE & Urban Administration)' },
+      { imgId: 'leaderImg12', caption: 'With Shri Vijay Sharma — Hon’ble Deputy Chief Minister & Home Minister of Chhattisgarh' }
+    ];
+
+    let activeLightboxIndex = 0;
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      const btn = document.getElementById('mobileMenuBtn');
+      const openIcon = document.getElementById('menuIconOpen');
+      const closeIcon = document.getElementById('menuIconClose');
+      const isOpen = drawer.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      openIcon.classList.toggle('hidden', isOpen);
+      closeIcon.classList.toggle('hidden', !isOpen);
+    }
+
+    function closeMobileMenu() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (!drawer.classList.contains('open')) return;
+      drawer.classList.remove('open');
+      document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
+      document.getElementById('menuIconOpen').classList.remove('hidden');
+      document.getElementById('menuIconClose').classList.add('hidden');
+    }
+
     function switchBioLang(lang) {
       const hi = document.getElementById('bio-hindi');
       const en = document.getElementById('bio-english');
@@ -1488,14 +1812,12 @@
       document.querySelectorAll('.debate-filter-btn').forEach(b => {
         b.className = 'debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/10 text-slate-300 hover:bg-white/20 transition';
       });
-      btn.className = 'debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-saffron-600 text-white transition';
+      btn.className = 'debate-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-saffron-600 text-white shadow-sm transition';
 
       document.querySelectorAll('.debate-card').forEach(card => {
-        if (type === 'all' || card.dataset.type === type) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
+        const show = type === 'all' || card.dataset.type === type;
+        card.classList.toggle('hidden', !show);
+        if (show) card.classList.add('is-visible');
       });
     }
 
@@ -1512,16 +1834,89 @@
       reader.readAsDataURL(file);
     }
 
-    function openLightbox(imgId, caption) {
-      const img = document.getElementById(imgId);
-      if (!img || img.classList.contains('hidden')) return;
+    function renderLightbox(index) {
+      const item = galleryItems[index];
+      const img = document.getElementById(item.imgId);
+      if (!img || img.classList.contains('hidden')) return false;
+      activeLightboxIndex = index;
       document.getElementById('lightboxImg').src = img.src;
-      document.getElementById('lightboxCaption').textContent = caption;
-      document.getElementById('photoLightbox').classList.remove('hidden');
+      document.getElementById('lightboxImg').alt = img.alt;
+      document.getElementById('lightboxCaption').textContent = item.caption;
+      document.getElementById('lightboxCounter').textContent = `${index + 1} / ${galleryItems.length}`;
+      return true;
+    }
+
+    function openLightboxByIndex(index) {
+      if (!renderLightbox(index)) return;
+      document.getElementById('photoLightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function stepLightbox(direction) {
+      const total = galleryItems.length;
+      for (let i = 1; i <= total; i++) {
+        const nextIdx = (activeLightboxIndex + direction * i + total) % total;
+        if (renderLightbox(nextIdx)) break;
+      }
     }
 
     function closeLightbox() {
-      document.getElementById('photoLightbox').classList.add('hidden');
+      document.getElementById('photoLightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Keyboard Support (Escape, Left/Right Arrows)
+    document.addEventListener('keydown', (e) => {
+      const lb = document.getElementById('photoLightbox');
+      if (lb.classList.contains('open')) {
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowRight') stepLightbox(1);
+        else if (e.key === 'ArrowLeft') stepLightbox(-1);
+      } else if (e.key === 'Escape') {
+        closeMobileMenu();
+      }
+    });
+
+    // Touch Swipe Gestures for Lightbox on iOS & Android
+    (function initLightboxSwipe() {
+      const area = document.getElementById('lightboxSwipeArea');
+      let startX = 0;
+      area.addEventListener('touchstart', (e) => {
+        startX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      area.addEventListener('touchend', (e) => {
+        const deltaX = e.changedTouches[0].screenX - startX;
+        if (Math.abs(deltaX) > 45) {
+          stepLightbox(deltaX < 0 ? 1 : -1);
+        }
+      }, { passive: true });
+    })();
+
+    // Copy Office Email + Toast Feedback
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.getElementById('toastNotice');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    function copyOfficeEmail() {
+      const email = 'touqeerrazabjp@gmail.com';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(() => {
+          showToast('Copied: touqeerrazabjp@gmail.com');
+        }).catch(() => showToast('Email: touqeerrazabjp@gmail.com'));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Copied: touqeerrazabjp@gmail.com');
+      }
     }
 
     function sendOfficeEmail(e) {
@@ -1532,9 +1927,110 @@
       const msg = document.getElementById('senderMessage').value.trim();
 
       const mailSubject = encodeURIComponent(`[touqeerraza.in] ${subject} — ${name}`);
-      const mailBody = encodeURIComponent(`Name: ${name}\nLocation/Media House: ${loc || 'N/A'}\n\nMessage:\n${msg}`);
+      const mailBody = encodeURIComponent(`Name: ${name}
+Location/Media House: ${loc || 'N/A'}
+
+Message:
+${msg}`);
       window.location.href = `mailto:touqeerrazabjp@gmail.com?subject=${mailSubject}&body=${mailBody}`;
     }
+
+    // GPU Scroll Progress Bar & Floating Back-to-Top Visibility
+    (function initScrollEffects() {
+      const progressBar = document.getElementById('scrollProgressBar');
+      const backBtn = document.getElementById('backToTopBtn');
+      let ticking = false;
+
+      function updateOnScroll() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+        progressBar.style.transform = `scaleX(${ratio})`;
+
+        if (scrollTop > 420) {
+          backBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+        } else {
+          backBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+        }
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateOnScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+      updateOnScroll();
+    })();
+
+    // Fluid Scroll Reveal + Animated Milestone Counters + Active Section Spy
+    (function initObservers() {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reveals = document.querySelectorAll('.reveal');
+
+      if (!('IntersectionObserver' in window) || prefersReduced) {
+        reveals.forEach(el => el.classList.add('is-visible'));
+      } else {
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Animated Counters
+        const counters = document.querySelectorAll('[data-count-target]');
+        const counterObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseInt(el.dataset.countTarget, 10);
+            const suffix = el.dataset.countSuffix || '';
+            const useComma = el.dataset.countComma === 'true';
+            const startVal = target > 1500 ? target - 60 : 0;
+            const duration = 900;
+            const startTime = performance.now();
+
+            function tick(now) {
+              const progress = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(startVal + (target - startVal) * eased);
+              el.textContent = (useComma ? current.toLocaleString('en-IN') : current) + suffix;
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+            obs.unobserve(el);
+          });
+        }, { threshold: 0.4 });
+
+        counters.forEach(c => counterObserver.observe(c));
+      }
+
+      // Active Nav Highlighting
+      const sections = ['biography', 'positions', 'campaigns', 'gallery', 'debates', 'social-feed'];
+      const navLinks = document.querySelectorAll('.nav-link');
+      if ('IntersectionObserver' in window) {
+        const spy = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+              });
+            }
+          });
+        }, { rootMargin: '-35% 0px -55% 0px' });
+
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) spy.observe(el);
+        });
+      }
+    })();
   </script>
 </body>
 </html>
