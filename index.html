@@ -3078,5 +3078,145 @@
     (function initSwipe() {
       const area = document.getElementById("lightboxSwipeArea");
       let startX = 0;
-      area.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].scr
-                                                
+      area.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].screenX; }, { passive: true });
+      area.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].screenX - startX; if (Math.abs(dx) > 45) stepLightbox(dx < 0 ? 1 : -1); }, { passive: true });
+    })();
+
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById("toastNotice");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
+    }
+    function copyText(text, successMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => showToast(successMsg)).catch(() => fallbackCopy(text, successMsg));
+      else fallbackCopy(text, successMsg);
+    }
+    function fallbackCopy(text, successMsg) {
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); showToast(successMsg); } catch (_) { showToast(text); }
+      document.body.removeChild(ta);
+    }
+    function sharePortal() {
+      const shareData = { title: "Touqeer Raza (तौक़ीर रज़ा) — State Spokesperson, BJP Chhattisgarh", text: "Official public portal of Touqeer Raza — State Spokesperson, BJP Chhattisgarh & President, FANS Raipur.", url: window.location.protocol.startsWith("http") ? window.location.href : "https://touqeerraza.in/" };
+      if (navigator.share) navigator.share(shareData).catch(() => {});
+      else copyText(shareData.url, currentLang === "hi" ? "पोर्टल लिंक कॉपी हो गया!" : "Official portal link copied!");
+    }
+    function copyOfficeEmail() { copyText("touqeerrazabjp@gmail.com", currentLang === "hi" ? "ईमेल कॉपी हो गया: touqeerrazabjp@gmail.com" : "Copied: touqeerrazabjp@gmail.com"); }
+
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById("officeContactForm"), statusBox = document.getElementById("formStatusBox"), btn = document.getElementById("formSubmitBtn");
+      const name = document.getElementById("senderName").value.trim(), email = document.getElementById("senderEmail").value.trim(), loc = document.getElementById("senderLocation").value.trim(), purpose = document.getElementById("senderSubject").value, msg = document.getElementById("senderMessage").value.trim();
+      if (!name || !msg) { statusBox.className = "form-status info"; statusBox.textContent = currentLang === "hi" ? "कृपया अपना नाम और संदेश भरें।" : "Please fill in your full name and message."; return; }
+      if (WEB3FORMS_ACCESS_KEY.trim()) {
+        btn.disabled = true; const originalText = btn.textContent; btn.textContent = currentLang === "hi" ? "भेजा जा रहा है..." : "Sending...";
+        try {
+          const res = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify({ access_key: WEB3FORMS_ACCESS_KEY.trim(), subject: `[touqeerraza.in] ${purpose} — ${name}`, from_name: name, name, email: email || "noreply@touqeerraza.in", location: loc || "N/A", purpose, message: msg, botcheck: document.getElementById("botcheck").checked }) });
+          const data = await res.json();
+          if (data.success) { form.reset(); statusBox.className = "form-status ok"; statusBox.textContent = currentLang === "hi" ? "आपका संदेश सफलतापूर्वक कार्यालय को प्राप्त हो गया है। धन्यवाद!" : "Your message has been delivered directly to Touqeer Raza's office. Thank you!"; showToast(currentLang === "hi" ? "संदेश सफलतापूर्वक भेजा गया" : "Message delivered successfully"); }
+          else throw new Error(data.message || "Error");
+        } catch (_) { openMailtoFallback(name, email, loc, purpose, msg, statusBox); }
+        finally { btn.disabled = false; btn.textContent = originalText; }
+      } else { openMailtoFallback(name, email, loc, purpose, msg, statusBox); }
+    }
+    function openMailtoFallback(name, email, loc, purpose, msg, statusBox) {
+      window.location.href = `mailto:touqeerrazabjp@gmail.com?subject=${encodeURIComponent(`[touqeerraza.in] ${purpose} — ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nReply Email: ${email || 'N/A'}\nLocation/Media House: ${loc || 'N/A'}\n\nMessage:\n${msg}`)}`;
+      statusBox.className = "form-status info";
+      statusBox.textContent = currentLang === "hi" ? "आपका ईमेल ऐप खुल गया है। यदि ऐप न खुले तो 'ईमेल कॉपी करें' बटन से touqeerrazabjp@gmail.com पर सीधे मेल भेजें।" : "Your email app has been opened. If no mail app is configured on this device, use Copy Email to write directly to touqeerrazabjp@gmail.com.";
+    }
+
+    (function initLazySocialFeeds() {
+      let scriptsLoaded = false;
+      function adaptFacebookWidth() {
+        const wrap = document.getElementById("fbFrameWrap"), iframe = document.getElementById("fbPageIframe");
+        if (!wrap || !iframe) return;
+        const w = Math.min(500, Math.max(260, Math.floor(wrap.clientWidth)));
+        if (w && Math.abs(w - 340) > 20) { iframe.width = String(w); iframe.src = `https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTouqeerRazaBJP&tabs=timeline&width=${w}&height=315&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false`; }
+      }
+      function isHealthyWidgetContent(el, provider) {
+        if (!el) return false;
+        const rect = el.getBoundingClientRect(), text = (el.textContent || "").toLowerCase();
+        if (text.includes("views limit") || text.includes("view limit") || text.includes("upgrade your plan") || text.includes("widget has been disabled") || text.includes("not found")) return false;
+        return provider === "elfsight" ? (el.children.length > 0 && rect.height > 110) : ((el.querySelectorAll("img, a, iframe").length > 0 || el.children.length > 0) && rect.height > 110);
+      }
+      function watchWidget(targetId, wrapperId, fallbackId, dotId, provider) {
+        const target = document.getElementById(targetId), wrapper = document.getElementById(wrapperId), fallback = document.getElementById(fallbackId), dot = document.getElementById(dotId);
+        if (!target || !wrapper || !fallback) return;
+        function evaluate() {
+          if (isHealthyWidgetContent(target, provider)) { wrapper.className = "widget-box-active"; fallback.classList.add("hidden"); if (dot) dot.classList.add("is-live"); }
+          else { wrapper.className = ""; fallback.classList.remove("hidden"); if (dot) dot.classList.remove("is-live"); }
+        }
+        if ("MutationObserver" in window) new MutationObserver(() => setTimeout(evaluate, 260)).observe(target, { childList: true, subtree: true, attributes: true });
+        setTimeout(evaluate, 2500); setTimeout(evaluate, 6000);
+      }
+      function loadThirdPartyWidgets() {
+        if (scriptsLoaded) return; scriptsLoaded = true; adaptFacebookWidth();
+        if (window.location.protocol === "content:") return;
+        const elf = document.createElement("script"); elf.src = "https://elfsightcdn.com/platform.js"; elf.async = true; document.body.appendChild(elf);
+        const fou = document.createElement("script"); fou.src = "https://wdg.fouita.com/widgets/0x589cb1.js"; fou.defer = true; document.body.appendChild(fou);
+        watchWidget("elfsightXTarget", "elfsightXWrapper", "xFallbackCard", "dotX", "elfsight");
+        watchWidget("fta6w1tzw", "fouitaIgWrapper", "igFallbackCard", "dotIg", "fouita");
+      }
+      const section = document.getElementById("social-feed");
+      if ("IntersectionObserver" in window && section) {
+        new IntersectionObserver((entries, o) => { if (entries.some((e) => e.isIntersecting)) { loadThirdPartyWidgets(); o.disconnect(); } }, { rootMargin: "500px 0px" }).observe(section);
+      } else { loadThirdPartyWidgets(); }
+    })();
+
+    (function initExperience() {
+      const header = document.getElementById("siteHeader"), progressBar = document.getElementById("scrollProgressBar"), backBtn = document.getElementById("backToTopBtn");
+      let ticking = false;
+      function onScroll() {
+        const y = window.scrollY || document.documentElement.scrollTop, max = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.transform = `scaleX(${max > 0 ? Math.min(Math.max(y / max, 0), 1) : 0})`;
+        header.classList.toggle("is-scrolled", y > 24);
+        backBtn.classList.toggle("show", y > 440);
+        ticking = false;
+      }
+      window.addEventListener("scroll", () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
+      onScroll();
+
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reveals = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window) || prefersReduced) { reveals.forEach((el) => el.classList.add("is-visible")); }
+      else {
+        const revObs = new IntersectionObserver((entries, obs) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); } }); }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+        reveals.forEach((el) => revObs.observe(el));
+
+        const counters = document.querySelectorAll("[data-count-target]");
+        const cntObs = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target, target = parseInt(el.dataset.countTarget, 10), suffix = el.dataset.countSuffix || "", useComma = el.dataset.countComma === "true", start = target > 1500 ? target - 60 : 0, t0 = performance.now();
+            function step(now) {
+              const p = Math.min((now - t0) / 850, 1);
+              el.textContent = (useComma ? Math.round(start + (target - start) * (1 - Math.pow(1 - p, 3))).toLocaleString("en-IN") : Math.round(start + (target - start) * (1 - Math.pow(1 - p, 3)))) + suffix;
+              if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step); obs.unobserve(el);
+          });
+        }, { threshold: 0.4 });
+        counters.forEach((c) => cntObs.observe(c));
+      }
+
+      const sectionIds = ["expedition", "biography", "positions", "gallery", "debates", "social-feed"];
+      const navLinks = document.querySelectorAll(".nav-link");
+      if ("IntersectionObserver" in window) {
+        const spy = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => { if (entry.isIntersecting) navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`)); });
+        }, { rootMargin: "-32% 0px -56% 0px" });
+        sectionIds.forEach((id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+      }
+
+      let saved = "hi";
+      try { saved = localStorage.getItem("tr_lang") || "hi"; } catch (_) {}
+      setSiteLang(saved, false);
+    })();
+  </script>
+</body>
+</html>
