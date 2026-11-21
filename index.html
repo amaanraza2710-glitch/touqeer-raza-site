@@ -1487,6 +1487,8 @@
       .hero-grid { grid-template-columns: 7fr 5fr; gap: 3rem; }
       .bio-grid { grid-template-columns: 7fr 5fr; gap: 2.75rem; }
       .expedition-grid { grid-template-columns: 6fr 6fr; gap: 2.25rem; }
+      #khairagarh-expedition .expedition-grid .map-stage { order: 2; }
+      #khairagarh-expedition .expedition-grid .expedition-info { order: 1; }
       .pillars-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .gallery-grid, .debates-grid, .grid-3, .social-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .contact-grid { grid-template-columns: 5fr 7fr; gap: 2.5rem; }
@@ -3292,10 +3294,29 @@
         const mediaOrLinks = el.querySelectorAll("img, a, iframe, video").length;
         return mediaOrLinks > 0 && rect.height > 120;
       }
+      function repairBrokenAvatars(container) {
+        if (!container) return;
+        container.querySelectorAll("img").forEach((img) => {
+          const isSmallAvatar = img.closest("a, header") && !img.closest("[class*='post'], [class*='media'], [class*='image'], [class*='slide']") && (img.getBoundingClientRect().width <= 72 || img.naturalHeight <= 72 || !img.complete || img.naturalWidth === 0);
+          if (isSmallAvatar && img.getAttribute("src") !== "touqeer-raza.jpg") {
+            img.src = "touqeer-raza.jpg";
+            img.style.objectFit = "cover";
+            img.style.objectPosition = "top center";
+          }
+          img.addEventListener("error", () => {
+            if (img.getAttribute("src") !== "touqeer-raza.jpg") {
+              img.src = "touqeer-raza.jpg";
+              img.style.objectFit = "cover";
+              img.style.objectPosition = "top center";
+            }
+          }, { once: true });
+        });
+      }
       function watchWidget(targetId, wrapperId, fallbackId, dotId, provider) {
         const target = document.getElementById(targetId), wrapper = document.getElementById(wrapperId), fallback = document.getElementById(fallbackId), dot = document.getElementById(dotId);
         if (!target || !wrapper || !fallback) return;
         function evaluate() {
+          if (provider === "fouita") repairBrokenAvatars(target);
           if (isHealthyWidgetContent(target, provider)) {
             wrapper.className = "widget-box-active";
             fallback.classList.add("hidden");
@@ -3307,7 +3328,7 @@
           }
         }
         if ("MutationObserver" in window) new MutationObserver(() => setTimeout(evaluate, 260)).observe(target, { childList: true, subtree: true, attributes: true });
-        setTimeout(evaluate, 2500); setTimeout(evaluate, 6000);
+        setTimeout(evaluate, 1200); setTimeout(evaluate, 2500); setTimeout(evaluate, 6000);
       }
       function loadThirdPartyWidgets() {
         if (scriptsLoaded) return; scriptsLoaded = true; adaptFacebookWidth();
