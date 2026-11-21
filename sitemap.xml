@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://touqeerraza.in/</loc>
-    <lastmod>2026-11-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://touqeerraza.in/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://touqeerraza.in/" />
+    <image:image>
+      <image:loc>https://touqeerraza.in/touqeer-raza.jpg</image:loc>
+      <image:title>Touqeer Raza (तौक़ीर रज़ा) — State Spokesperson, BJP Chhattisgarh</image:title>
+      <image:caption>Official portrait of Touqeer Raza, State Spokesperson of BJP Chhattisgarh and President of FANS Raipur</image:caption>
+    </image:image>
   </url>
 </urlset>
