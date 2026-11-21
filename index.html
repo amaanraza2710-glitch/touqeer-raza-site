@@ -1202,6 +1202,13 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 0.85rem;
+      min-width: 0;
+    }
+    .social-col > div:first-child {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
     .social-col-head {
       display: flex;
@@ -1247,9 +1254,44 @@
     .social-handle { margin: 0.2rem 0 0; font-size: 0.75rem; color: var(--ink-500); }
     .social-bio { margin: 0.65rem 0 0; font-size: 0.8rem; color: var(--ink-700); line-height: 1.55; }
 
-    .widget-box-active { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 0.5rem; max-height: 360px; overflow-y: auto; box-shadow: var(--shadow-sm); }
+    .widget-box-active {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.65rem;
+      min-height: 360px;
+      max-height: 540px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-shadow: var(--shadow-sm);
+      scrollbar-width: thin;
+    }
+    #fouitaIgWrapper.widget-box-active .ft,
+    #fouitaIgWrapper.widget-box-active .ft > div,
+    #fouitaIgWrapper.widget-box-active .ft > div > div {
+      max-width: 100% !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      min-width: 0 !important;
+      overflow: visible !important;
+    }
+    #fouitaIgWrapper.widget-box-active img {
+      border-radius: 8px;
+      object-fit: contain;
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      max-width: 100% !important;
+    }
+    #fouitaIgWrapper.widget-box-active a,
+    #fouitaIgWrapper.widget-box-active p,
+    #fouitaIgWrapper.widget-box-active span {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
     .fb-frame-wrap { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); display: flex; justify-content: center; }
-    .social-cta { display: block; width: 100%; text-align: center; padding: 0.7rem 1rem; border-radius: 11px; font-size: 0.8rem; font-weight: 700; color: #fff; margin-top: 0.75rem; transition: opacity 0.2s ease, transform 0.15s ease, background 0.2s ease; }
+    .social-cta { display: block; width: 100%; text-align: center; padding: 0.72rem 1rem; border-radius: 11px; font-size: 0.8rem; font-weight: 700; color: #fff; margin-top: 0.15rem; transition: opacity 0.2s ease, transform 0.15s ease, background 0.2s ease; }
     .social-cta:active { transform: scale(0.98); }
     .cta-x { background: var(--navy-900); }
     .cta-x:hover { background: var(--saffron-600); }
@@ -1357,13 +1399,19 @@
       transition: opacity 0.24s ease;
     }
     .modal-backdrop.open { opacity: 1; pointer-events: auto; }
+    .modal-backdrop {
+      overflow-y: auto;
+    }
     .modal-panel {
       width: 100%;
-      max-width: 860px;
+      max-width: 720px;
+      max-height: calc(100dvh - 2rem);
       background: var(--navy-900);
       border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: var(--radius-lg);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       box-shadow: var(--shadow-lg);
       transform: scale(0.96);
       transition: transform 0.26s var(--ease-out);
@@ -1393,7 +1441,15 @@
     .video-ext-link:hover { background: var(--saffron-600); color: #fff; }
     .video-close-inline { width: 34px; height: 34px; border-radius: 999px; border: 0; background: rgba(255, 255, 255, 0.1); color: #fff; font-weight: 800; cursor: pointer; }
     .video-close-inline:hover { background: var(--saffron-600); }
-    .video-frame-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+    .video-frame-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      max-height: 54dvh;
+      background: #000;
+    }
     .video-frame-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .video-modal-foot { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.76rem; color: #cbd5e1; }
     .video-step-btn { border: 1px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.07); color: #fff; padding: 0.36rem 0.72rem; border-radius: 8px; font-size: 0.74rem; font-weight: 700; cursor: pointer; }
@@ -1719,77 +1775,112 @@
       </div>
     </section>
 
-    <!-- 2. INTERACTIVE CHHATTISGARH & BASTAR EXPEDITION MAP -->
+    <!-- 2A. BASTAR PEACE RALLY MAP (23–25 MARCH 2017 • 860 KM) -->
     <section id="expedition" class="section section-dark">
       <div class="container">
         <div class="reveal" style="margin-bottom:2rem;">
-          <span class="eyebrow" data-i18n="mapEyebrow">इंटरैक्टिव शांति अभियान मानचित्र</span>
-          <h2 class="section-title" data-i18n="mapTitle">बस्तर एवं खैरागढ़ — 1,160+ किमी की ऐतिहासिक शांति यात्रा</h2>
+          <span class="eyebrow" data-i18n="mapEyebrow">इंटरैक्टिव बस्तर शांति मानचित्र</span>
+          <h2 class="section-title" data-i18n="mapTitle">“मांठ संगय डकाठ” (हमारे साथ चलो) — 860 किमी बस्तर शांति यात्रा</h2>
           <p class="section-lead" data-i18n="mapLead">
-            नीचे किसी भी अभियान या पड़ाव (Waypoint) पर क्लिक करें और रायपुर से बस्तर व खैरागढ़ के नक्सल प्रभावित क्षेत्रों तक के मार्ग का लाइव विवरण देखें।
+            23–25 मार्च 2017 को 110 बाइकों व 11 कारों के साथ रायपुर से जगदलपुर तक के मार्ग और पड़ावों (Waypoints) का विवरण देखने के लिए किसी भी बिंदु पर क्लिक करें।
           </p>
         </div>
 
         <div class="expedition-grid">
-          <!-- Interactive Vector Map -->
           <div class="map-stage reveal">
             <div class="map-hud">
-              <span style="font-size:0.78rem;font-weight:800;color:#f8fafc;letter-spacing:0.05em;text-transform:uppercase;" id="mapHudTitle">BASTAR CORRIDOR • 2017</span>
-              <div class="map-telemetry" id="mapTelemetry">
+              <span style="font-size:0.78rem;font-weight:800;color:#f8fafc;letter-spacing:0.05em;text-transform:uppercase;">BASTAR CORRIDOR • 23–25 MARCH 2017</span>
+              <div class="map-telemetry">
                 <span class="tele-chip">860 KM</span>
                 <span class="tele-chip">110 Bikes • 11 Cars</span>
               </div>
             </div>
 
             <div class="map-svg-wrap">
-              <svg id="cgMapSvg" class="map-svg" viewBox="0 0 420 460" role="img" aria-label="Interactive Chhattisgarh Peace Rally Route Map">
-                <!-- Stylized Topographic Silhouette of Chhattisgarh -->
+              <svg id="bastarMapSvg" class="map-svg" viewBox="0 0 420 460" role="img" aria-label="Bastar Peace Rally Route Map">
                 <path d="M168,28 L238,24 L276,62 L292,118 L272,175 L290,228 L266,278 L274,344 L236,416 L186,438 L154,398 L164,340 L132,292 L126,232 L106,184 L132,130 L144,72 Z"
                       fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.16)" stroke-width="1.5" />
-                <!-- Subtle Topographic Contour Rings -->
                 <path d="M174,80 L238,76 L258,150 L252,248 L234,358 L188,386 L168,314 L152,216 Z"
                       fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3 4" />
-
-                <!-- Dynamic Route Paths -->
-                <path id="routeBasePath" class="route-base" d="" />
-                <path id="routeGlowPath" class="route-glow" d="" />
-
-                <!-- Dynamic Waypoint Nodes -->
-                <g id="mapWaypointsGroup"></g>
+                <path id="bastarBasePath" class="route-base" d="" />
+                <path id="bastarGlowPath" class="route-glow" d="" />
+                <g id="bastarWaypointsGroup"></g>
               </svg>
             </div>
 
             <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.72rem;color:#94a3b8;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.08);">
               <span data-i18n="mapHint">पड़ाव पर क्लिक करें</span>
-              <span>FANS • Raipur, Chhattisgarh</span>
+              <span>FANS • Raipur → Barsur → Jagdalpur</span>
             </div>
           </div>
 
-          <!-- Mission Switcher + Waypoint Details -->
           <div class="expedition-info reveal delay-1">
-            <div class="mission-tabs" role="tablist" aria-label="Select peace rally mission">
-              <button type="button" id="missionBtnBastar" class="mission-tab is-active" onclick="selectMission('bastar')">
-                <span class="mission-tab-date" data-i18n="m1Date">23–25 मार्च 2017</span>
-                <span class="mission-tab-title" data-i18n="m1Title">“मांठ संगय डकाठ” • बस्तर</span>
-              </button>
-              <button type="button" id="missionBtnKhairagarh" class="mission-tab" onclick="selectMission('khairagarh')">
-                <span class="mission-tab-date" data-i18n="m2Date">25 मार्च 2018</span>
-                <span class="mission-tab-title" data-i18n="m2Title">मलैदा जंगल • खैरागढ़</span>
-              </button>
-            </div>
-
-            <div class="waypoint-detail-card panel-animate" id="waypointDetailCard">
-              <span class="role-badge" style="color:var(--saffron-400);" id="wpStepBadge">STOP 1 OF 6</span>
-              <h3 id="wpStepTitle">Raipur — Flag-Off</h3>
-              <p id="wpStepDesc"></p>
-              <div class="waypoint-pills" id="wpPillsRow"></div>
+            <div class="waypoint-detail-card panel-animate" id="bastarDetailCard">
+              <span class="role-badge" style="color:var(--saffron-400);" id="bastarStepBadge">STOP 1 OF 6</span>
+              <h3 id="bastarStepTitle">Raipur — Flag-Off</h3>
+              <p id="bastarStepDesc"></p>
+              <div class="waypoint-pills" id="bastarPillsRow"></div>
             </div>
 
             <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.15rem 1.25rem;">
-              <p style="margin:0;font-family:var(--font-hindi);font-size:0.96rem;font-weight:700;color:#fdba74;line-height:1.55;" id="missionQuote">
-                “बुलेट छोड़ो और बैलेट पर विश्वास करो”
-              </p>
-              <p style="margin:0.45rem 0 0;font-size:0.78rem;color:#94a3b8;" id="missionOutcome"></p>
+              <p style="margin:0;font-family:var(--font-hindi);font-size:0.96rem;font-weight:700;color:#fdba74;line-height:1.55;" id="bastarQuote"></p>
+              <p style="margin:0.45rem 0 0;font-size:0.78rem;color:#94a3b8;" id="bastarOutcome"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2B. KHAIRAGARH–MALAIDA COURAGE RALLY MAP (25 MARCH 2018 • 300 KM) -->
+    <section id="khairagarh-expedition" class="section section-dark" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:2rem;">
+          <span class="eyebrow" data-i18n="kMapEyebrow">इंटरैक्टिव खैरागढ़–मलैदा मानचित्र</span>
+          <h2 class="section-title" data-i18n="kMapTitle">शहीद युगल किशोर वर्मा श्रद्धांजलि एवं मलैदा जंगल साहस रैली — 300 किमी</h2>
+          <p class="section-lead" data-i18n="kMapLead">
+            25 मार्च 2018 को 170 बाइकों व 15 कारों के साथ नक्सल प्रभावित मलैदा जंगल (खैरागढ़) और सीएम हाउस रायपुर तक के मार्ग का विवरण देखें।
+          </p>
+        </div>
+
+        <div class="expedition-grid">
+          <div class="map-stage reveal">
+            <div class="map-hud">
+              <span style="font-size:0.78rem;font-weight:800;color:#f8fafc;letter-spacing:0.05em;text-transform:uppercase;">KHAIRAGARH–MALAIDA • 25 MARCH 2018</span>
+              <div class="map-telemetry">
+                <span class="tele-chip">300 KM</span>
+                <span class="tele-chip">170 Bikes • 15 Cars</span>
+              </div>
+            </div>
+
+            <div class="map-svg-wrap">
+              <svg id="khairagarhMapSvg" class="map-svg" viewBox="0 0 420 460" role="img" aria-label="Khairagarh Malaida Peace Rally Route Map">
+                <path d="M168,28 L238,24 L276,62 L292,118 L272,175 L290,228 L266,278 L274,344 L236,416 L186,438 L154,398 L164,340 L132,292 L126,232 L106,184 L132,130 L144,72 Z"
+                      fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.16)" stroke-width="1.5" />
+                <path d="M174,80 L238,76 L258,150 L252,248 L234,358 L188,386 L168,314 L152,216 Z"
+                      fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3 4" />
+                <path id="khairagarhBasePath" class="route-base" d="" />
+                <path id="khairagarhGlowPath" class="route-glow" d="" />
+                <g id="khairagarhWaypointsGroup"></g>
+              </svg>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.72rem;color:#94a3b8;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.08);">
+              <span data-i18n="mapHint">पड़ाव पर क्लिक करें</span>
+              <span>FANS • Raipur → Khairagarh → Malaida</span>
+            </div>
+          </div>
+
+          <div class="expedition-info reveal delay-1">
+            <div class="waypoint-detail-card panel-animate" id="khairagarhDetailCard">
+              <span class="role-badge" style="color:var(--saffron-400);" id="khairagarhStepBadge">STOP 1 OF 4</span>
+              <h3 id="khairagarhStepTitle">Raipur — Mobilization</h3>
+              <p id="khairagarhStepDesc"></p>
+              <div class="waypoint-pills" id="khairagarhPillsRow"></div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.15rem 1.25rem;">
+              <p style="margin:0;font-family:var(--font-hindi);font-size:0.96rem;font-weight:700;color:#fdba74;line-height:1.55;" id="khairagarhQuote"></p>
+              <p style="margin:0.45rem 0 0;font-size:0.78rem;color:#94a3b8;" id="khairagarhOutcome"></p>
             </div>
           </div>
         </div>
@@ -1877,8 +1968,11 @@
           </div>
 
           <div class="quote-card">
-            <p class="quote-text">“बुलेट छोड़ो और बैलेट पर विश्वास करो — तुम हमारे एक जवान को मारोगे, हम 100 जवान खड़े करेंगे।”</p>
-            <p class="quote-source" data-i18n="quoteSrc">— बस्तर (2017) एवं खैरागढ़-मलैदा (2018) राष्ट्रीय सुरक्षा एवं शांति रैलियां, FANS</p>
+            <p class="quote-text">“बुलेट छोड़ो और बैलेट पर विश्वास करो।”</p>
+            <p class="quote-source" data-i18n="quoteSrc1">— बस्तर शांति रैली (“मांठ संगय डकाठ”), मार्च 2017</p>
+            <hr style="border:0;border-top:1px solid rgba(255,255,255,0.14);margin:0.9rem 0;" />
+            <p class="quote-text">“तुम हमारे एक जवान को मारोगे, हम 100 जवान खड़े करेंगे।”</p>
+            <p class="quote-source" data-i18n="quoteSrc2">— शहीद युगल किशोर वर्मा श्रद्धांजलि एवं खैरागढ़-मलैदा रैली, मार्च 2018</p>
           </div>
 
           <div class="press-feature-card">
@@ -1985,7 +2079,6 @@
             <button type="button" class="filter-pill" data-filter="youtube" onclick="setDebateFilter('youtube', this)" data-i18n="fltTv">वीडियो प्रसारण (14)</button>
             <button type="button" class="filter-pill" data-filter="national" onclick="setDebateFilter('national', this)">DD / IBC24</button>
             <button type="button" class="filter-pill" data-filter="regional" onclick="setDebateFilter('regional', this)">BS TV / INH / TV24</button>
-            <button type="button" class="filter-pill" data-filter="music" onclick="setDebateFilter('music', this)" data-i18n="fltMusic">गायन / संगीत (1)</button>
             <button type="button" class="filter-pill" data-filter="social" onclick="setDebateFilter('social', this)" data-i18n="fltSoc">X व Facebook (2)</button>
           </div>
 
@@ -1998,6 +2091,21 @@
         </div>
 
         <div id="debatesGrid" class="debates-grid"></div>
+      </div>
+    </section>
+
+    <!-- 6B. Dedicated Classical & Ghazal Singing Section (Khairagarh B.Mus) -->
+    <section id="vocal-art" class="section" style="border-top:1px solid var(--line);">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:1.75rem;">
+          <span class="eyebrow" data-i18n="vocalEyebrow">शास्त्रीय गायन एवं संगीत</span>
+          <h2 class="section-title" data-i18n="vocalTitle">गायन एवं शास्त्रीय कला</h2>
+          <p class="section-lead" data-i18n="vocalLead">
+            टीवी डिबेट से अलग, यह प्रस्तुति तौक़ीर रज़ा के शास्त्रीय संगीत (Bachelor of Music) एवं ग़ज़ल गायन से जुड़ी है।
+          </p>
+        </div>
+
+        <div id="vocalGrid" class="debates-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,380px));"></div>
       </div>
     </section>
 
@@ -2244,7 +2352,14 @@
         factSportsVal: "राष्ट्रीय हॉकी, अविभाजित म.प्र. बॉडीबिल्डिंग (“Mr. MP”), प्रथम पुरस्कार ग़ज़ल",
         factLangLbl: "भाषाएं",
         factLangVal: "हिन्दी, अंग्रेज़ी, उर्दू, छत्तीसगढ़ी, अरबी",
-        quoteSrc: "— बस्तर (2017) एवं खैरागढ़-मलैदा (2018) राष्ट्रीय सुरक्षा एवं शांति रैलियां, FANS",
+        kMapEyebrow: "इंटरैक्टिव खैरागढ़–मलैदा मानचित्र",
+        kMapTitle: "शहीद युगल किशोर वर्मा श्रद्धांजलि एवं मलैदा जंगल साहस रैली — 300 किमी",
+        kMapLead: "25 मार्च 2018 को 170 बाइकों व 15 कारों के साथ नक्सल प्रभावित मलैदा जंगल (खैरागढ़) और सीएम हाउस रायपुर तक के मार्ग का विवरण देखें।",
+        quoteSrc1: "— बस्तर शांति रैली (“मांठ संगय डकाठ”), मार्च 2017",
+        quoteSrc2: "— शहीद युगल किशोर वर्मा श्रद्धांजलि एवं खैरागढ़-मलैदा रैली, मार्च 2018",
+        vocalEyebrow: "शास्त्रीय गायन एवं संगीत",
+        vocalTitle: "गायन एवं शास्त्रीय कला",
+        vocalLead: "टीवी डिबेट से अलग, यह प्रस्तुति तौक़ीर रज़ा के शास्त्रीय संगीत (Bachelor of Music) एवं ग़ज़ल गायन से जुड़ी है।",
         pressSpotTag: "राष्ट्रीय प्रेस फ़ीचर • Awaz-The Voice",
         pressSpotDesc: "अक्टूबर 2025 में प्रकाशित विशेष प्रोफ़ाइल — रायपुर से बस्तर तक सामाजिक सरोकार, खेल, शास्त्रीय संगीत और उद्यमिता की कहानी।",
         pressSpotLink: "पूरा लेख पढ़ें →",
@@ -2411,7 +2526,14 @@
         factSportsVal: "National Hockey, Undivided MP Bodybuilding (“Mr. MP”), 1st Prize Ghazal",
         factLangLbl: "Languages Known",
         factLangVal: "Hindi, English, Urdu, Chhattisgarhi, Arabic",
-        quoteSrc: "— FANS Peace & National Security Rallies across Bastar (2017) & Khairagarh-Malaida (2018)",
+        kMapEyebrow: "Interactive Khairagarh–Malaida Map",
+        kMapTitle: "Shaheed Yugal Kishore Verma Tribute & Malaida Forests Courage Rally — 300 km",
+        kMapLead: "25 March 2018: Trace the route with 170 bikes and 15 cars into the Naxal-affected Malaida forests (Khairagarh) and back to CM House, Raipur.",
+        quoteSrc1: "— Bastar Peace Rally (“Maath Sangay Dakat”), March 2017",
+        quoteSrc2: "— Shaheed Yugal Kishore Verma Tribute & Khairagarh–Malaida Rally, March 2018",
+        vocalEyebrow: "Classical Vocal & Music",
+        vocalTitle: "Singing & Classical Art",
+        vocalLead: "Separate from TV debates, this clip highlights Touqeer Raza’s classical vocal (B.Mus) and ghazal singing background.",
         pressSpotTag: "National Press Feature • Awaz-The Voice",
         pressSpotDesc: "Published October 2025 — In-depth profile tracing his journey from Raipur and Bastar across public life, sports, classical vocal music, and enterprise.",
         pressSpotLink: "Read Full Profile →",
@@ -2576,92 +2698,78 @@
       { id: "e_Zpn81arqw", url: "https://youtu.be/e_Zpn81arqw", group: "regional", channel: "Hindi Khabar", tagClass: "tag-amber", title: "Hindi Khabar: वोटर लिस्ट और SIR प्रक्रिया पर सियासी बहस में भाजपा का पक्ष" },
       { id: "UPSFgvWM_cE", url: "https://youtu.be/UPSFgvWM_cE", group: "regional", channel: "TV24 MP/CG", tagClass: "tag-indigo", title: "मुद्दा आज का | कांग्रेस VS भाजपा — TV24 MP/CG विशेष परिचर्चा" },
       { id: "g2IhGa7EjOM", url: "https://youtu.be/g2IhGa7EjOM", group: "regional", channel: "TV Debate", tagClass: "tag-slate", title: "छत्तीसगढ़ राजनीति और विकास नीतियों पर लाइव टेलीविज़न डिबेट" },
-      { id: "oPHdPzKdLW8", url: "https://youtu.be/oPHdPzKdLW8", group: "music", channel: "Classical & Ghazal", tagClass: "tag-amber", titleHi: "शास्त्रीय संगीत एवं ग़ज़ल गायन प्रस्तुति — तौक़ीर रज़ा (खैरागढ़ संगीत स्नातक)", titleEn: "Classical Vocal & Ghazal Rendition — Touqeer Raza (Khairagarh Music Graduate)" },
+      { id: "oPHdPzKdLW8", url: "https://youtu.be/oPHdPzKdLW8", group: "music", channel: "Classical & Ghazal", tagClass: "tag-amber", titleHi: "गायन एवं शास्त्रीय कला प्रस्तुति — तौक़ीर रज़ा", titleEn: "Singing & Classical Art — Touqeer Raza" },
       { id: "MJgEOU3vRn8", url: "https://youtu.be/MJgEOU3vRn8", group: "regional", channel: "TV Debate", tagClass: "tag-slate", title: "जनसरोकार और संगठनात्मक नीतियों पर लाइव न्यूज़ डिबेट" },
       { id: "BdfyTQseKV4", url: "https://youtu.be/BdfyTQseKV4", group: "regional", channel: "TV Debate", tagClass: "tag-slate", title: "प्रदेश की राजनीति और सामाजिक समरसता पर विशेष बहस" },
       { id: "ni6FNJJ_VpY", url: "https://youtu.be/ni6FNJJ_VpY", group: "regional", channel: "TV Debate", tagClass: "tag-slate", title: "प्रमुख टेलीविज़न परिचर्चा — भाजपा छत्तीसगढ़ का आधिकारिक पक्ष" }
     ];
 
     let currentLang = "hi";
-    let activeMission = "bastar";
-    let activeWaypointIdx = 0;
+    let activeBastarWp = 0;
+    let activeKhairagarhWp = 0;
     let activeGalleryFilter = "all";
     let activeDebateFilter = "all";
     let activeLightboxIndex = 0;
     let activeVideoIndex = 0;
     let lastFocusedElement = null;
 
-    // =========================================================================
-    // INTERACTIVE CHHATTISGARH EXPEDITION MAP ENGINE
-    // =========================================================================
-    function renderMissionMap() {
-      const m = missionsData[activeMission];
-      document.getElementById("mapHudTitle").textContent = m.hud;
-      document.getElementById("mapTelemetry").innerHTML = m.chips.map((c) => `<span class="tele-chip">${c}</span>`).join("");
-      document.getElementById("missionQuote").textContent = currentLang === "hi" ? m.quoteHi : m.quoteEn;
-      document.getElementById("missionOutcome").textContent = currentLang === "hi" ? m.outcomeHi : m.outcomeEn;
-      document.getElementById("missionBtnBastar").classList.toggle("is-active", activeMission === "bastar");
-      document.getElementById("missionBtnKhairagarh").classList.toggle("is-active", activeMission === "khairagarh");
+    function renderSingleMap(missionKey, activeWpIdx, ids) {
+      const m = missionsData[missionKey];
+      document.getElementById(ids.quote).textContent = currentLang === "hi" ? m.quoteHi : m.quoteEn;
+      document.getElementById(ids.outcome).textContent = currentLang === "hi" ? m.outcomeHi : m.outcomeEn;
 
       const d = m.waypoints.map((w, i) => `${i === 0 ? "M" : "L"}${w.x},${w.y}`).join(" ");
-      const basePath = document.getElementById("routeBasePath");
-      const glowPath = document.getElementById("routeGlowPath");
+      const basePath = document.getElementById(ids.base);
+      const glowPath = document.getElementById(ids.glow);
       basePath.setAttribute("d", d);
       glowPath.setAttribute("d", d);
 
-      const len = glowPath.getTotalLength ? glowPath.getTotalLength() : 600;
+      const len = glowPath.getTotalLength ? glowPath.getTotalLength() : 500;
       glowPath.style.strokeDasharray = `${len}`;
       glowPath.style.strokeDashoffset = `${len}`;
-      requestAnimationFrame(() => {
-        glowPath.style.strokeDashoffset = "0";
-      });
+      requestAnimationFrame(() => { glowPath.style.strokeDashoffset = "0"; });
 
-      const group = document.getElementById("mapWaypointsGroup");
+      const group = document.getElementById(ids.group);
       group.innerHTML = m.waypoints.map((w, idx) => {
         const lbl = currentLang === "hi" ? w.labelHi : w.labelEn;
-        const active = idx === activeWaypointIdx ? "is-active" : "";
+        const active = idx === activeWpIdx ? "is-active" : "";
         const dx = w.x > 200 ? 12 : -12;
         const anchor = w.x > 200 ? "start" : "end";
         return `
-          <g class="wp-node ${active}" onclick="selectWaypoint(${idx})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectWaypoint(${idx});}" role="button" tabindex="0" aria-label="${lbl}">
-            <circle cx="${w.x}" cy="${w.y}" r="${idx === activeWaypointIdx ? 7 : 5.5}" class="wp-dot" />
+          <g class="wp-node ${active}" onclick="selectMissionWaypoint('${missionKey}', ${idx})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMissionWaypoint('${missionKey}', ${idx});}" role="button" tabindex="0" aria-label="${lbl}">
+            <circle cx="${w.x}" cy="${w.y}" r="${idx === activeWpIdx ? 7 : 5.5}" class="wp-dot" />
             <text x="${w.x + dx}" y="${w.y + 4}" text-anchor="${anchor}" class="wp-label">${lbl}</text>
           </g>
         `;
       }).join("");
 
-      renderWaypointDetail();
-    }
-
-    function renderWaypointDetail() {
-      const m = missionsData[activeMission];
-      const w = m.waypoints[activeWaypointIdx] || m.waypoints[0];
-      const stepWord = currentLang === "hi" ? `पड़ाव ${activeWaypointIdx + 1} / ${m.waypoints.length}` : `STOP ${activeWaypointIdx + 1} OF ${m.waypoints.length}`;
-      document.getElementById("wpStepBadge").textContent = stepWord;
-      document.getElementById("wpStepTitle").textContent = currentLang === "hi" ? w.titleHi : w.titleEn;
-      document.getElementById("wpStepDesc").textContent = currentLang === "hi" ? w.descHi : w.descEn;
-
-      document.getElementById("wpPillsRow").innerHTML = m.waypoints.map((item, idx) => {
+      const w = m.waypoints[activeWpIdx] || m.waypoints[0];
+      document.getElementById(ids.badge).textContent = currentLang === "hi" ? `पड़ाव ${activeWpIdx + 1} / ${m.waypoints.length}` : `STOP ${activeWpIdx + 1} OF ${m.waypoints.length}`;
+      document.getElementById(ids.title).textContent = currentLang === "hi" ? w.titleHi : w.titleEn;
+      document.getElementById(ids.desc).textContent = currentLang === "hi" ? w.descHi : w.descEn;
+      document.getElementById(ids.pills).innerHTML = m.waypoints.map((item, idx) => {
         const lbl = currentLang === "hi" ? item.labelHi : item.labelEn;
-        return `<button type="button" class="wp-pill ${idx === activeWaypointIdx ? "is-active" : ""}" onclick="selectWaypoint(${idx})">${idx + 1}. ${lbl}</button>`;
+        return `<button type="button" class="wp-pill ${idx === activeWpIdx ? "is-active" : ""}" onclick="selectMissionWaypoint('${missionKey}', ${idx})">${idx + 1}. ${lbl}</button>`;
       }).join("");
     }
 
-    function selectMission(key) {
-      activeMission = key;
-      activeWaypointIdx = 0;
-      renderMissionMap();
+    function renderMissionMap() {
+      renderSingleMap("bastar", activeBastarWp, {
+        base: "bastarBasePath", glow: "bastarGlowPath", group: "bastarWaypointsGroup",
+        badge: "bastarStepBadge", title: "bastarStepTitle", desc: "bastarStepDesc",
+        pills: "bastarPillsRow", quote: "bastarQuote", outcome: "bastarOutcome"
+      });
+      renderSingleMap("khairagarh", activeKhairagarhWp, {
+        base: "khairagarhBasePath", glow: "khairagarhGlowPath", group: "khairagarhWaypointsGroup",
+        badge: "khairagarhStepBadge", title: "khairagarhStepTitle", desc: "khairagarhStepDesc",
+        pills: "khairagarhPillsRow", quote: "khairagarhQuote", outcome: "khairagarhOutcome"
+      });
     }
 
-    function selectWaypoint(idx) {
-      activeWaypointIdx = idx;
-      const nodes = document.querySelectorAll("#mapWaypointsGroup .wp-node");
-      nodes.forEach((n, i) => {
-        n.classList.toggle("is-active", i === idx);
-        const dot = n.querySelector(".wp-dot");
-        if (dot) dot.setAttribute("r", i === idx ? "7" : "5.5");
-      });
-      renderWaypointDetail();
+    function selectMissionWaypoint(missionKey, idx) {
+      if (missionKey === "bastar") activeBastarWp = idx;
+      else activeKhairagarhWp = idx;
+      renderMissionMap();
     }
 
     // =========================================================================
@@ -2850,8 +2958,11 @@
 
     function renderDebates() {
       const grid = document.getElementById("debatesGrid");
+      const vocalGrid = document.getElementById("vocalGrid");
       const watchText = i18n[currentLang].watchHere;
+
       const ytCards = debatesData.map((d, idx) => {
+        if (d.group === "music") return "";
         const delayClass = idx % 3 === 1 ? "delay-1" : (idx % 3 === 2 ? "delay-2" : "");
         const displayTitle = d.title || (currentLang === "hi" ? d.titleHi : d.titleEn);
         const searchText = `${d.channel} ${d.title || ""} ${d.titleHi || ""} ${d.titleEn || ""}`.toLowerCase();
@@ -2867,6 +2978,24 @@
           </button>
         `;
       }).join("");
+
+      if (vocalGrid) {
+        const musicIdx = debatesData.findIndex((d) => d.group === "music");
+        if (musicIdx !== -1) {
+          const mItem = debatesData[musicIdx];
+          const mTitle = currentLang === "hi" ? mItem.titleHi : mItem.titleEn;
+          vocalGrid.innerHTML = `
+            <button type="button" class="debate-card card-lift reveal is-visible" style="background:var(--navy-900);" onclick="openVideoModal(${musicIdx})">
+              <div class="debate-thumb">
+                <img src="https://img.youtube.com/vi/${mItem.id}/hqdefault.jpg" alt="${mTitle}" loading="lazy" decoding="async" />
+                <span class="channel-tag ${mItem.tagClass}">${mItem.channel}</span>
+                <div class="play-overlay"><div class="play-circle" aria-hidden="true">▶</div></div>
+              </div>
+              <div class="debate-body"><h3 class="debate-title">${mTitle}</h3><span class="debate-link-text">${watchText}</span></div>
+            </button>
+          `;
+        }
+      }
 
       const xClipTitle = currentLang === "hi" ? "IBC24 लाइव डिबेट क्लिप — प्रदेश की राजनीति पर तौक़ीर रज़ा का वक्तव्य" : "IBC24 Live Debate Clip — Touqeer Raza on Chhattisgarh Politics";
       const xClipSub = currentLang === "hi" ? "@IBC24News द्वारा X पर प्रसारित आधिकारिक डिबेट अंश।" : "Official broadcast snippet featured by @IBC24News on X.";
@@ -3049,7 +3178,22 @@
       document.getElementById("videoModalTitle").textContent = `${item.channel} — ${displayTitle}`;
       document.getElementById("videoExtLink").href = item.url;
       document.getElementById("videoCounter").textContent = `${activeVideoIndex + 1} / ${debatesData.length}`;
-      document.getElementById("videoFrameWrap").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(item.id)}?autoplay=1&rel=0&modestbranding=1" title="${displayTitle.replace(/"/g, '&quot;')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      const wrap = document.getElementById("videoFrameWrap");
+      const isLocalFile = window.location.protocol === "file:" || window.location.protocol === "content:";
+      if (isLocalFile) {
+        wrap.innerHTML = `
+          <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.85rem;padding:1.25rem;text-align:center;background:radial-gradient(circle at center,#16243d,#04070f);">
+            <img src="https://img.youtube.com/vi/${encodeURIComponent(item.id)}/hqdefault.jpg" alt="" style="max-height:130px;border-radius:10px;opacity:0.85;" />
+            <p style="margin:0;font-size:0.82rem;color:#cbd5e1;max-width:44ch;">
+              ${currentLang === "hi" ? "स्थानीय फ़ाइल (file://) में YouTube एम्बेड प्रतिबंधित होता है। लाइव साइट या नीचे दिए बटन से वीडियो देखें।" : "YouTube blocks embedded playback when opened as a local file://. Watch directly on YouTube or on the live https:// site."}
+            </p>
+            <a href="${item.url}" target="_blank" rel="noopener" class="btn btn-primary" style="padding:0.6rem 1.1rem;font-size:0.8rem;">
+              ${currentLang === "hi" ? "YouTube पर वीडियो चलाएं ↗" : "Watch on YouTube ↗"}
+            </a>
+          </div>`;
+      } else {
+        wrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${encodeURIComponent(item.id)}?rel=0&playsinline=1" title="${displayTitle.replace(/"/g, '&quot;')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+      }
     }
     function openVideoModal(index) {
       lastFocusedElement = document.activeElement;
@@ -3142,14 +3286,25 @@
         if (!el) return false;
         const rect = el.getBoundingClientRect(), text = (el.textContent || "").toLowerCase();
         if (text.includes("views limit") || text.includes("view limit") || text.includes("upgrade your plan") || text.includes("widget has been disabled") || text.includes("not found")) return false;
-        return provider === "elfsight" ? (el.children.length > 0 && rect.height > 110) : ((el.querySelectorAll("img, a, iframe").length > 0 || el.children.length > 0) && rect.height > 110);
+        if (provider === "elfsight") {
+          return el.children.length > 0 && rect.height > 110;
+        }
+        const mediaOrLinks = el.querySelectorAll("img, a, iframe, video").length;
+        return mediaOrLinks > 0 && rect.height > 120;
       }
       function watchWidget(targetId, wrapperId, fallbackId, dotId, provider) {
         const target = document.getElementById(targetId), wrapper = document.getElementById(wrapperId), fallback = document.getElementById(fallbackId), dot = document.getElementById(dotId);
         if (!target || !wrapper || !fallback) return;
         function evaluate() {
-          if (isHealthyWidgetContent(target, provider)) { wrapper.className = "widget-box-active"; fallback.classList.add("hidden"); if (dot) dot.classList.add("is-live"); }
-          else { wrapper.className = ""; fallback.classList.remove("hidden"); if (dot) dot.classList.remove("is-live"); }
+          if (isHealthyWidgetContent(target, provider)) {
+            wrapper.className = "widget-box-active";
+            fallback.classList.add("hidden");
+            if (dot) dot.classList.add("is-live");
+          } else {
+            wrapper.className = "";
+            fallback.classList.remove("hidden");
+            if (dot) dot.classList.remove("is-live");
+          }
         }
         if ("MutationObserver" in window) new MutationObserver(() => setTimeout(evaluate, 260)).observe(target, { childList: true, subtree: true, attributes: true });
         setTimeout(evaluate, 2500); setTimeout(evaluate, 6000);
