@@ -1284,6 +1284,14 @@
       max-height: none !important;
       max-width: 100% !important;
     }
+    #fouitaIgWrapper.widget-box-active [class*="avatar"],
+    #fouitaIgWrapper.widget-box-active [class*="Avatar"],
+    #fouitaIgWrapper.widget-box-active [class*="pfp"],
+    #fouitaIgWrapper.widget-box-active header img {
+      border-radius: 999px !important;
+      object-fit: cover !important;
+      object-position: top center !important;
+    }
     #fouitaIgWrapper.widget-box-active a,
     #fouitaIgWrapper.widget-box-active p,
     #fouitaIgWrapper.widget-box-active span {
@@ -1597,8 +1605,8 @@
           <button type="button" id="langBtnEn" onclick="setSiteLang('en')">EN</button>
         </div>
 
-        <!-- Subtle Classical Tanpura Ambience Toggle (Muted by Default — Homage to Khairagarh B.Mus) -->
-        <button type="button" id="tanpuraBtn" class="icon-action-btn" onclick="toggleTanpura()" aria-label="Toggle classical tanpura ambience" title="Classical Tanpura Ambience">
+        <!-- Subtle Classical Santoor Ambience (On by Default — Homage to Khairagarh B.Mus) -->
+        <button type="button" id="tanpuraBtn" class="icon-action-btn is-on" onclick="toggleTanpura()" aria-label="Toggle classical santoor ambience" title="Classical Santoor Ambience (On)">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/>
           </svg>
@@ -1633,7 +1641,7 @@
           <a href="#gallery" onclick="closeMobileMenu()" data-i18n="navGal">नेतृत्व गैलरी</a>
           <a href="#debates" onclick="closeMobileMenu()" data-i18n="navDeb">टीवी डिबेट</a>
           <a href="#social-feed" onclick="closeMobileMenu()" data-i18n="navSoc">सोशल फ़ीड</a>
-          <button type="button" onclick="toggleTanpura(); closeMobileMenu();" style="padding:0.65rem 0.85rem;border-radius:10px;background:var(--paper);font-size:0.82rem;font-weight:700;color:var(--navy-900);border:1px solid var(--line);cursor:pointer;" data-i18n="mobTanpura">तानपुरा ध्वनि</button>
+          <button type="button" onclick="toggleTanpura(); closeMobileMenu();" style="padding:0.65rem 0.85rem;border-radius:10px;background:var(--paper);font-size:0.82rem;font-weight:700;color:var(--navy-900);border:1px solid var(--line);cursor:pointer;" data-i18n="mobTanpura">शास्त्रीय संगीत</button>
           <button type="button" onclick="sharePortal(); closeMobileMenu();" style="padding:0.65rem 0.85rem;border-radius:10px;background:var(--paper);font-size:0.82rem;font-weight:700;color:var(--navy-900);border:1px solid var(--line);cursor:pointer;" data-i18n="mobShare">शेयर करें</button>
           <a href="#contact" onclick="closeMobileMenu()" class="drawer-cta" data-i18n="navOffice">जनसंपर्क कार्यालय</a>
         </nav>
@@ -2303,7 +2311,7 @@
         navDeb: "टीवी डिबेट",
         navSoc: "सोशल फ़ीड",
         navOffice: "जनसंपर्क कार्यालय",
-        mobTanpura: "तानपुरा ध्वनि",
+        mobTanpura: "शास्त्रीय संगीत",
         mobShare: "शेयर करें",
         heroBadge: "भारतीय जनता पार्टी (भाजपा) छत्तीसगढ़ • रायपुर",
         heroAlsoSpelled: "Tauqeer Raza के रूप में भी उल्लेखित",
@@ -2477,7 +2485,7 @@
         navDeb: "TV Debates",
         navSoc: "Social Feed",
         navOffice: "Public Office",
-        mobTanpura: "Tanpura Drone",
+        mobTanpura: "Classical Ambience",
         mobShare: "Share Portal",
         heroBadge: "Bharatiya Janata Party (BJP) Chhattisgarh • Raipur",
         heroAlsoSpelled: "Also spelled Tauqeer Raza",
@@ -2775,53 +2783,164 @@
     }
 
     // =========================================================================
-    // OPTIONAL CLASSICAL TANPURA AMBIENCE (WEB AUDIO API — ZERO EXTERNAL FILES)
+    // HUM-FREE CONTINUOUS SANTOOR AMBIENCE (ON BY DEFAULT • WEB AUDIO API)
     // =========================================================================
-    let tanpuraCtx = null;
-    let tanpuraGain = null;
-    let tanpuraPlaying = false;
+    let classicalCtx = null;
+    let classicalMaster = null;
+    let santoorLoopTimer = null;
+    let classicalPlaying = true;
+    let audioUnlocked = false;
+
+    function ensureClassicalEngine() {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return false;
+      if (!classicalCtx) {
+        classicalCtx = new AudioCtx();
+        classicalMaster = classicalCtx.createGain();
+        classicalMaster.gain.value = 0.5;
+
+        const lp = classicalCtx.createBiquadFilter();
+        lp.type = "lowpass";
+        lp.frequency.value = 1400;
+        classicalMaster.connect(lp);
+        lp.connect(classicalCtx.destination);
+      }
+      return true;
+    }
+
+    function triggerSantoorMotif() {
+      if (!classicalCtx || !classicalMaster || !classicalPlaying || document.hidden) return;
+      if (classicalCtx.state !== "running") return;
+      const now = classicalCtx.currentTime;
+      // Pure plucked Santoor motifs in Raag Yaman (no continuous low-frequency drone/hum)
+      const phrases = [
+        [{ f: 277.18, t: 0.0 }, { f: 349.23, t: 0.68 }, { f: 415.30, t: 1.36 }],
+        [{ f: 523.25, t: 0.0 }, { f: 554.37, t: 0.68 }, { f: 415.30, t: 1.4 }],
+        [{ f: 349.23, t: 0.0 }, { f: 415.30, t: 0.72 }, { f: 554.37, t: 1.44 }]
+      ];
+      const motif = phrases[Math.floor(Math.random() * phrases.length)];
+      motif.forEach((n) => {
+        const chime = classicalCtx.createOscillator();
+        const overtone = classicalCtx.createOscillator();
+        chime.type = "sine";
+        overtone.type = "sine";
+        chime.frequency.setValueAtTime(n.f, now + n.t);
+        overtone.frequency.setValueAtTime(n.f * 2, now + n.t);
+
+        const env = classicalCtx.createGain();
+        env.gain.setValueAtTime(0.0001, now + n.t);
+        env.gain.exponentialRampToValueAtTime(0.6, now + n.t + 0.03);
+        env.gain.exponentialRampToValueAtTime(0.0001, now + n.t + 2.1);
+
+        const overGain = classicalCtx.createGain();
+        overGain.gain.setValueAtTime(0.06, now + n.t);
+
+        chime.connect(env);
+        overtone.connect(overGain);
+        overGain.connect(env);
+        env.connect(classicalMaster);
+
+        chime.start(now + n.t);
+        overtone.start(now + n.t);
+        chime.stop(now + n.t + 2.2);
+        overtone.stop(now + n.t + 2.2);
+      });
+    }
+
+    function startSantoorLoop(silent = false) {
+      const btn = document.getElementById("tanpuraBtn");
+      classicalPlaying = true;
+      if (btn) btn.classList.add("is-on");
+      if (!ensureClassicalEngine()) return;
+
+      const begin = () => {
+        if (!classicalPlaying) return;
+        audioUnlocked = (classicalCtx.state === "running");
+        if (!audioUnlocked) return;
+        const now = classicalCtx.currentTime;
+        classicalMaster.gain.cancelScheduledValues(now);
+        classicalMaster.gain.setValueAtTime(Math.max(classicalMaster.gain.value, 0.0001), now);
+        classicalMaster.gain.exponentialRampToValueAtTime(0.5, now + 0.45);
+        triggerSantoorMotif();
+        clearInterval(santoorLoopTimer);
+        santoorLoopTimer = setInterval(triggerSantoorMotif, 4500);
+        if (!silent) {
+          showToast(currentLang === "hi" ? "मधुर संतूर संगीत सक्रिय" : "Classical Santoor Ambience On");
+        }
+      };
+
+      if (classicalCtx.state === "suspended") {
+        classicalCtx.resume().then(begin).catch(() => {});
+      } else {
+        begin();
+      }
+    }
 
     function toggleTanpura() {
       const btn = document.getElementById("tanpuraBtn");
-      if (!tanpuraPlaying) {
-        try {
-          const AudioCtx = window.AudioContext || window.webkitAudioContext;
-          if (!tanpuraCtx) {
-            tanpuraCtx = new AudioCtx();
-            tanpuraGain = tanpuraCtx.createGain();
-            tanpuraGain.gain.value = 0.0001;
-            const filter = tanpuraCtx.createBiquadFilter();
-            filter.type = "lowpass";
-            filter.frequency.value = 620;
-            tanpuraGain.connect(filter);
-            filter.connect(tanpuraCtx.destination);
-            // Warm Sa-Pa-Sa classical drone (C# / Kali 1: 138.59Hz, 207.65Hz, 277.18Hz)
-            [138.59, 207.65, 277.18].forEach((freq, i) => {
-              const osc = tanpuraCtx.createOscillator();
-              osc.type = i === 0 ? "triangle" : "sine";
-              osc.frequency.value = freq;
-              const g = tanpuraCtx.createGain();
-              g.gain.value = i === 0 ? 0.45 : 0.25;
-              osc.connect(g);
-              g.connect(tanpuraGain);
-              osc.start();
-            });
-          }
-          if (tanpuraCtx.state === "suspended") tanpuraCtx.resume();
-          tanpuraGain.gain.exponentialRampToValueAtTime(0.045, tanpuraCtx.currentTime + 0.8);
-          tanpuraPlaying = true;
-          btn.classList.add("is-on");
-          showToast(currentLang === "hi" ? "शास्त्रीय तानपुरा ध्वनि सक्रिय (खैरागढ़ संगीत सम्मान)" : "Classical Tanpura Ambience On");
-        } catch (_) {}
+      // If user clicks the active button before browser autoplay unlocked, unlock & play immediately instead of turning off!
+      if (classicalPlaying && classicalCtx && classicalCtx.state !== "running") {
+        startSantoorLoop(false);
+        return;
+      }
+      if (!classicalPlaying) {
+        startSantoorLoop(false);
       } else {
-        if (tanpuraGain && tanpuraCtx) {
-          tanpuraGain.gain.exponentialRampToValueAtTime(0.0001, tanpuraCtx.currentTime + 0.5);
+        classicalPlaying = false;
+        clearInterval(santoorLoopTimer);
+        if (btn) btn.classList.remove("is-on");
+        if (classicalMaster && classicalCtx) {
+          const now = classicalCtx.currentTime;
+          classicalMaster.gain.cancelScheduledValues(now);
+          classicalMaster.gain.setValueAtTime(Math.max(classicalMaster.gain.value, 0.0001), now);
+          classicalMaster.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
+          setTimeout(() => {
+            if (!classicalPlaying && classicalCtx && classicalCtx.state === "running") {
+              classicalCtx.suspend().catch(() => {});
+            }
+          }, 500);
         }
-        tanpuraPlaying = false;
-        btn.classList.remove("is-on");
-        showToast(currentLang === "hi" ? "तानपुरा ध्वनि बंद" : "Tanpura Ambience Off");
+        showToast(currentLang === "hi" ? "शास्त्रीय संगीत बंद" : "Classical Ambience Off");
       }
     }
+
+    // Start by default and unlock immediately on touch/press/click/key anywhere on the page
+    (function initDefaultClassicalAudio() {
+      startSantoorLoop(true);
+      const unlockEvents = ["touchstart", "pointerdown", "mousedown", "click", "keydown"];
+      function onFirstGesture(e) {
+        if (e.target && e.target.closest && e.target.closest("#tanpuraBtn")) {
+          unlockEvents.forEach((ev) => document.removeEventListener(ev, onFirstGesture, true));
+          return;
+        }
+        if (!classicalPlaying) {
+          unlockEvents.forEach((ev) => document.removeEventListener(ev, onFirstGesture, true));
+          return;
+        }
+        if (!ensureClassicalEngine()) return;
+        const whenRunning = () => {
+          if (!classicalPlaying) return;
+          if (classicalCtx.state === "running") {
+            audioUnlocked = true;
+            unlockEvents.forEach((ev) => document.removeEventListener(ev, onFirstGesture, true));
+            if (!santoorLoopTimer) {
+              const now = classicalCtx.currentTime;
+              classicalMaster.gain.cancelScheduledValues(now);
+              classicalMaster.gain.setValueAtTime(Math.max(classicalMaster.gain.value, 0.0001), now);
+              classicalMaster.gain.exponentialRampToValueAtTime(0.5, now + 0.35);
+              triggerSantoorMotif();
+              santoorLoopTimer = setInterval(triggerSantoorMotif, 4500);
+            }
+          }
+        };
+        if (classicalCtx.state === "suspended") {
+          classicalCtx.resume().then(whenRunning).catch(() => {});
+        } else {
+          whenRunning();
+        }
+      }
+      unlockEvents.forEach((ev) => document.addEventListener(ev, onFirstGesture, { capture: true, passive: true }));
+    })();
 
     // =========================================================================
     // 60FPS GPU VOLUMETRIC HERO CANVAS (PAUSES OFF-SCREEN & RESPECTS REDUCED MOTION)
@@ -3297,14 +3416,25 @@
       function repairBrokenAvatars(container) {
         if (!container) return;
         container.querySelectorAll("img").forEach((img) => {
-          const isSmallAvatar = img.closest("a, header") && !img.closest("[class*='post'], [class*='media'], [class*='image'], [class*='slide']") && (img.getBoundingClientRect().width <= 72 || img.naturalHeight <= 72 || !img.complete || img.naturalWidth === 0);
-          if (isSmallAvatar && img.getAttribute("src") !== "touqeer-raza.jpg") {
+          const rect = img.getBoundingClientRect();
+          const isMainPostArtwork = rect.width >= 150 || rect.height >= 150 || Boolean(img.closest("[class*='post'], [class*='media'], [class*='image'], [class*='slide'], [class*='photo'], [class*='carousel']"));
+          const looksLikeAvatar = !isMainPostArtwork && (
+            !img.complete ||
+            img.naturalWidth === 0 ||
+            (rect.width > 0 && rect.width <= 84) ||
+            (rect.height > 0 && rect.height <= 84) ||
+            /avatar|pfp|profile|user/i.test(`${img.className || ""} ${img.parentElement ? img.parentElement.className || "" : ""}`)
+          );
+          if (looksLikeAvatar && img.getAttribute("src") !== "touqeer-raza.jpg") {
             img.src = "touqeer-raza.jpg";
+            img.style.width = "100%";
+            img.style.height = "100%";
             img.style.objectFit = "cover";
             img.style.objectPosition = "top center";
+            img.style.opacity = "1";
           }
           img.addEventListener("error", () => {
-            if (img.getAttribute("src") !== "touqeer-raza.jpg") {
+            if (!isMainPostArtwork && img.getAttribute("src") !== "touqeer-raza.jpg") {
               img.src = "touqeer-raza.jpg";
               img.style.objectFit = "cover";
               img.style.objectPosition = "top center";
