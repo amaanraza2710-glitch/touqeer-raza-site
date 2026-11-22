@@ -2876,8 +2876,29 @@
       }
     }
 
-    function toggleTanpura() {
+    function stopSantoorForVideo(silent = true) {
       const btn = document.getElementById("tanpuraBtn");
+      classicalPlaying = false;
+      clearInterval(santoorLoopTimer);
+      santoorLoopTimer = null;
+      if (btn) btn.classList.remove("is-on");
+      if (classicalMaster && classicalCtx) {
+        const now = classicalCtx.currentTime;
+        classicalMaster.gain.cancelScheduledValues(now);
+        classicalMaster.gain.setValueAtTime(Math.max(classicalMaster.gain.value, 0.0001), now);
+        classicalMaster.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+        setTimeout(() => {
+          if (!classicalPlaying && classicalCtx && classicalCtx.state === "running") {
+            classicalCtx.suspend().catch(() => {});
+          }
+        }, 300);
+      }
+      if (!silent) {
+        showToast(currentLang === "hi" ? "शास्त्रीय संगीत बंद" : "Classical Ambience Off");
+      }
+    }
+
+    function toggleTanpura() {
       // If user clicks the active button before browser autoplay unlocked, unlock & play immediately instead of turning off!
       if (classicalPlaying && classicalCtx && classicalCtx.state !== "running") {
         startSantoorLoop(false);
@@ -2886,21 +2907,7 @@
       if (!classicalPlaying) {
         startSantoorLoop(false);
       } else {
-        classicalPlaying = false;
-        clearInterval(santoorLoopTimer);
-        if (btn) btn.classList.remove("is-on");
-        if (classicalMaster && classicalCtx) {
-          const now = classicalCtx.currentTime;
-          classicalMaster.gain.cancelScheduledValues(now);
-          classicalMaster.gain.setValueAtTime(Math.max(classicalMaster.gain.value, 0.0001), now);
-          classicalMaster.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
-          setTimeout(() => {
-            if (!classicalPlaying && classicalCtx && classicalCtx.state === "running") {
-              classicalCtx.suspend().catch(() => {});
-            }
-          }, 500);
-        }
-        showToast(currentLang === "hi" ? "शास्त्रीय संगीत बंद" : "Classical Ambience Off");
+        stopSantoorForVideo(false);
       }
     }
 
@@ -3317,6 +3324,7 @@
       }
     }
     function openVideoModal(index) {
+      stopSantoorForVideo(true);
       lastFocusedElement = document.activeElement;
       renderVideoModal(index);
       document.getElementById("videoModal").classList.add("open");
